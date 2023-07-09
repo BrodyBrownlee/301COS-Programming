@@ -14,10 +14,20 @@ public class Player_Movement : MonoBehaviour
     public float gravityMultiplier = 4f;
     private float yVelocity = 0;
     public float jumpingPower = 16f;
-    private bool isFacingRight = true;
+    public enum facingDirection
+    {
+        Up,
+        Left,
+        Right,
+        Down
+    }
+    facingDirection facing;
+    public int shootAngle = 0;
     CharacterController Cr;
     public LayerMask groundLayer;
+  
 
+       
     // Start is called before the first frame update
     void Start()
     {
@@ -47,18 +57,48 @@ public class Player_Movement : MonoBehaviour
         {
             return Cr.isGrounded;
         }
-        Flip();
 
-    }
-  
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            facing = facingDirection.Up;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            facing = facingDirection.Down;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            facing = facingDirection.Left;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            facing = facingDirection.Right;
+        }
+    
+        checkFacing(facing);
+    }
+    private void checkFacing(facingDirection facing)
+    {
+        if(facing == facingDirection.Left)
+        {
+            
+        }
+        else if (facing == facingDirection.Right)
+        {
+
+        }
+        else if(facing == facingDirection.Up)
+        {
+
+        }
+        else if(facing == facingDirection.Down)
+        {
+
+        }
+        else
+        {
+            return up;
         }
     }
 }
+        
