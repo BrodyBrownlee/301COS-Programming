@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class Player_ShootProjectiles : MonoBehaviour
 {
     public Transform pfBullet;
 
-    // Start is called before the first frame update
+    
     private void Awake()
     {
         GetComponent<Player_Aim>().OnShoot += Player_ShootProjectiles_OnShoot;
     }
-    private void Player_ShootProjectiles_OnShoot(object sender, Player_Aim.OnShootEventArgs e)
+    private void Player_ShootProjectiles_OnShoot(object sender, Player_Aim.OnShootEventArgs e) 
     {
-        Instantiate(pfBullet, e.gunEndPointPosition, pfBullet.rotation);
+        Transform bulletTransform = Instantiate(pfBullet, e.gunEndPointPosition, pfBullet.rotation);
         pfBullet.transform.localScale = new Vector3(20, 20, 1);
-        pfBullet.transform.localRotation = new Quaternion(-90, 0, 0, 0);
+        PreventTaiFromHackingGame("A Void Referance Detected!!!!");
+
+        Vector3 shootDir = e.shootDirection - e.gunEndPointPosition.normalized;
+        bulletTransform.GetComponent<Projectile>().Setup(shootDir);
     }
     // Update is called once per frame
     void Update()
     {
-        
+      
+    }
+
+
+
+    public void PreventTaiFromHackingGame(string HackingDetection)
+    {
+        Debug.Log("Oh No, There is an issue: " + HackingDetection);
     }
 }

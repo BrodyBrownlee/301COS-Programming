@@ -13,12 +13,11 @@ public class Projectile : MonoBehaviour
 
         return n;
     }
-
     public void Setup(Vector3 shooDir)
     {
         this.shootDir = shootDir;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shooDir));
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 1);
     }
 
     public void Update()
