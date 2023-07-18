@@ -40,9 +40,14 @@ public class Player_Aim : MonoBehaviour
             OnShoot?.Invoke(this, new OnShootEventArgs
             {
                 gunEndPointPosition = aimProjectileEndPointTransform.position,
-                
+                shootDirection = GetShootDirection(),
             });
         }
+    }
+    private Vector3 GetShootDirection()
+    {
+        float angleInRadians = shootAngle * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians), 0f);
     }
     private void Aim()
     {

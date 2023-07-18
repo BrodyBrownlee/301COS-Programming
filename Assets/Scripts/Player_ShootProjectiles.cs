@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_ShootProjectiles : MonoBehaviour
 {
     public Transform pfBullet;
-
+    public float projectileSpeed = 10f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -13,13 +13,22 @@ public class Player_ShootProjectiles : MonoBehaviour
     }
     private void Player_ShootProjectiles_OnShoot(object sender, Player_Aim.OnShootEventArgs e)
     {
-        Instantiate(pfBullet, e.gunEndPointPosition, pfBullet.rotation);
-        pfBullet.transform.localScale = new Vector3(20, 20, 1);
-        pfBullet.transform.localRotation = new Quaternion(-90, 0, 0, 0);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Transform bullet = Instantiate(pfBullet, e.gunEndPointPosition, Quaternion.identity);
+
+        // Disable gravity for the projectile
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        bulletRigidbody.useGravity = false;
+
+        // Calculate and apply velocity based on the shoot direction (only X and Z dimensions)
+        Vector3 shootDirectionXZ = new Vector3(e.shootDirection.x, 0f, e.shootDirection.z);
+        bulletRigidbody.velocity = shootDirectionXZ * projectileSpeed;
+
+        // Adjust the rotation to align with the shoot direction
+        Vector3 lookDirection = Vector3.forward;
+        if (shootDirectionXZ != Vector3.zero)
+        {
+            lookDirection = shootDirectionXZ;
+        }
+        bullet.rotation = Quaternion.Euler(90f, Mathf.Atan2(e.shootDirection.x, e.shootDirection.z) * Mathf.Rad2Deg, 0f);
     }
 }
