@@ -14,7 +14,6 @@ public class Player_Aim : MonoBehaviour
         public Vector3 shootDirection;
     }
     private Transform aimProjectileEndPointTransform;
-    public Vector3 aimDirection;
     public enum facingDirection
     {
         Up,
@@ -23,7 +22,7 @@ public class Player_Aim : MonoBehaviour
         Down
     }
     public facingDirection facing;
-    public int shootAngle;
+    public int shootAngle = 0;
     private void Awake()
     {
         aimProjectileEndPointTransform = transform.Find("Projectileposition");
@@ -33,9 +32,6 @@ public class Player_Aim : MonoBehaviour
     {
         Aim();
         Shoot();
-        Quaternion myAngle = Quaternion.Euler(0, 0, shootAngle);
-        Vector3 startingDirection = new Vector3(1,0,0);
-        aimDirection = myAngle * startingDirection;
     }
     private void Shoot()
     {
@@ -44,11 +40,16 @@ public class Player_Aim : MonoBehaviour
             OnShoot?.Invoke(this, new OnShootEventArgs
             {
                 gunEndPointPosition = aimProjectileEndPointTransform.position,
-                
+                shootDirection = GetShootDirection(),
             });
         }
     }
-    public void Aim()
+    private Vector3 GetShootDirection()
+    {
+        float angleInRadians = shootAngle * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians), 0f);
+    }
+    private void Aim()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -85,6 +86,10 @@ public class Player_Aim : MonoBehaviour
         else if (facing == facingDirection.Down)
         {
             shootAngle = 180;
+        }
+        else
+        {
+            shootAngle = 0;
         }
     }
 }

@@ -1,36 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 public class Player_ShootProjectiles : MonoBehaviour
 {
     public Transform pfBullet;
-
-    
+    public float projectileSpeed = 10f;
+    // Start is called before the first frame update
     private void Awake()
     {
         GetComponent<Player_Aim>().OnShoot += Player_ShootProjectiles_OnShoot;
     }
-    private void Player_ShootProjectiles_OnShoot(object sender, Player_Aim.OnShootEventArgs e) 
+    private void Player_ShootProjectiles_OnShoot(object sender, Player_Aim.OnShootEventArgs e)
     {
-        Transform bulletTransform = Instantiate(pfBullet, e.gunEndPointPosition, pfBullet.rotation);
-        pfBullet.transform.localScale = new Vector3(20, 20, 1);
-        PreventTaiFromHackingGame("A Void Referance Detected!!!!");
+        Transform bullet = Instantiate(pfBullet, e.gunEndPointPosition, Quaternion.identity);
 
-        Vector3 shootDir = e.shootDirection - e.gunEndPointPosition.normalized;
-        bulletTransform.GetComponent<Projectile>().Setup(shootDir);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
+        // Disable gravity for the projectile
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        bulletRigidbody.useGravity = false;
 
+        // Calculate and apply velocity based on the shoot direction (only X and Z dimensions)
+        Vector3 shootDirectionXZ = new Vector3(e.shootDirection.x, 0f, e.shootDirection.z);
+        bulletRigidbody.velocity = shootDirectionXZ * projectileSpeed;
 
-
-    public void PreventTaiFromHackingGame(string HackingDetection)
-    {
-        Debug.Log("Oh No, There is an issue: " + HackingDetection);
+        // Adjust the rotation to align with the shoot direction
+        Vector3 lookDirection = Vector3.forward;
+        if (shootDirectionXZ != Vector3.zero)
+        {
+            lookDirection = shootDirectionXZ;
+        }
+        bullet.rotation = Quaternion.Euler(90f, Mathf.Atan2(e.shootDirection.x, e.shootDirection.z) * Mathf.Rad2Deg, 0f);
     }
 }
