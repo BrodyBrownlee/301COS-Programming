@@ -18,13 +18,18 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    // Move the bullet forward based on its rotation and speed
-    transform.Translate(Vector3.up * speed * Time.deltaTime);
+        // Move the bullet forward based on its rotation and speed
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
-    /*private void OnTriggerEnter2D(Collider2D other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        // Destroy the bullet when it collides with something
-        // You can implement other behaviors here, e.g., dealing damage to enemies
-        Destroy(gameObject);
-    }*/
+        Debug.Log("Wall Hit");
+        if (collision.gameObject.tag == "Wall")
+        {
+            // Destroy the bullet when it collides with something
+            // You can implement other behaviors here, e.g., dealing damage to enemies
+            Destroy(gameObject);
+        }
+    }
 }
