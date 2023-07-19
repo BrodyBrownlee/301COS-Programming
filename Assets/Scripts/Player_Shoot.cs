@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Shoot : MonoBehaviour
 {
+    //creating game objects for the bullet prefab and projectile spawn for creating and centering the bullets
     public GameObject pfBullet;
     private GameObject projectileSpawn;
 
@@ -14,30 +15,28 @@ public class Player_Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if a directional key is being pressed create a bullet and rotate based on the direction
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            /* Aim();
-             Shoot();*/
-            Debug.Log("Shoot Key Pressed");
             GameObject newBullet = Instantiate(pfBullet);
             newBullet.transform.position = projectileSpawn.transform.position;
             newBullet.transform.Rotate(0, 0, getRotation());
         }
     }
+    //finding the rotation based on the key press
     private float getRotation()
-    {
-        Debug.Log("Finding Angle");
+    { 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             return 180;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            return 270;
+            return 90;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            return 90;
+            return 270;
         }
         else
         {
