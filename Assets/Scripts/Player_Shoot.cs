@@ -25,7 +25,7 @@ public class Player_Shoot : MonoBehaviour
             {
                 GameObject newBullet = Instantiate(pfBullet);
                 newBullet.transform.position = projectileSpawn.transform.position;
-                newBullet.transform.Rotate(0, 0, getRotation());
+                newBullet.transform.Rotate(0,0, getRotation());
                 timer = 0;
             }
         }
