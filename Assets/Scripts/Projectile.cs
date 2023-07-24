@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float lifetime = 2f; // Time in seconds before the bullet is destroyed
     Rigidbody Rb;
     int rotation;
-    Vector3 direction = Vector3.forward;
+    Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +27,17 @@ public class Projectile : MonoBehaviour
         {
             direction = Vector3.left;
         }
+        if(rotation == 0)
+        {
+            direction = Vector3.forward;
+        }
         // Destroy the bullet after a specified lifetime
-        Destroy(gameObject, lifetime);
+        //Destroy(gameObject, lifetime);
     }
-
-
     // Update is called once per frame
     void FixedUpdate()
     {
         // Move the bullet forward based on its rotation and speed
-        //transform.Translate(Vector3.up * speed * Time.deltaTime);
         Rb.velocity = direction * speed;
     }
 
@@ -47,6 +48,11 @@ public class Projectile : MonoBehaviour
             Debug.Log("Wall Hit");
             // Destroy the bullet when it collides with something
             // You can implement other behaviors here, e.g., dealing damage to enemies
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy Hit");
             Destroy(gameObject);
         }
     }

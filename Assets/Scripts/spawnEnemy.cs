@@ -17,7 +17,6 @@ public class spawnEnemy : MonoBehaviour
     void Update()
     {
 
-      
     }
     private void eSpawn()
     {
