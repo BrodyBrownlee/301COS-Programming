@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawnEnemy : MonoBehaviour
+public class enemySpawn : MonoBehaviour
 {
     public GameObject pfEnemy;
     private GameObject enemyLoc;
