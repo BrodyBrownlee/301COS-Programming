@@ -42,7 +42,6 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("hit!");
         if (collision.gameObject.tag == "Wall")
         {
             Debug.Log("Wall Hit");
