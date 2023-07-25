@@ -53,7 +53,6 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit");
-
             Destroy(gameObject);
         }
     }

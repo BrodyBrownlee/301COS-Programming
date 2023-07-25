@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI;
 
 public class Enemy : MonoBehaviour
 {
     public float hp = 3;
-    
+    public  Transform playerPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerPos = ("Player");
+        hp = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -28,5 +31,4 @@ public class Enemy : MonoBehaviour
             hp -= 1;
         }
     }
-
 }

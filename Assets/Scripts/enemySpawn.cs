@@ -11,13 +11,17 @@ public class enemySpawn : MonoBehaviour
     {
         enemyLoc = GameObject.Find("enemySpawn");
         eSpawn();
-       
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            GameObject newEnemy = Instantiate(pfEnemy);
+            newEnemy.transform.position = enemyLoc.transform.position;
 
+        }
     }
     private void eSpawn()
     {
