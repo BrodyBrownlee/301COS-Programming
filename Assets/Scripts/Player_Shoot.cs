@@ -7,6 +7,7 @@ public class Player_Shoot : MonoBehaviour
     //creating game objects for the bullet prefab and projectile spawn for creating and centering the bullets
     public GameObject pfBullet;
     private GameObject projectileSpawn;
+    private GameObject enemyHeight;
     public float shootDelay = 1f;
     public float timer = 1f;
 
@@ -25,6 +26,7 @@ public class Player_Shoot : MonoBehaviour
             {
                 GameObject newBullet = Instantiate(pfBullet);
                 newBullet.transform.position = projectileSpawn.transform.position;
+            
                 newBullet.transform.Rotate(0,0, getRotation());
                 timer = 0;
             }
