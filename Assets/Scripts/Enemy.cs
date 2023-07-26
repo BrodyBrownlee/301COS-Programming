@@ -49,6 +49,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             spawnerScript.numberOfEnemies--;
         }
+
+        gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
     }
     private void FixedUpdate()
     {
