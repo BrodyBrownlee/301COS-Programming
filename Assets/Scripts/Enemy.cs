@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     private bool canAttack;
     public  GameObject target;
-    /*public NavMeshAgent agent;*/
+    public NavMeshAgent agent;
     private Vector2 directionToTarget;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 enemyPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+        /*Vector2 enemyPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
         Vector2 targetPosition = new Vector2(target.transform.position.x, target.transform.position.z);
         Vector2 distanceToTarget = targetPosition - enemyPosition;
         directionToTarget = distanceToTarget.normalized;
@@ -37,11 +37,13 @@ public class Enemy : MonoBehaviour
         else
         {
             canAttack = false;
-        }
-       /* if (target != null)
+        }*/
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        if (target != null)
         {
             agent.SetDestination(target.transform.position);
-        }*/
+        }
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -50,14 +52,14 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!canAttack)
+        /*if(!canAttack)
         {
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(directionToTarget.x, gameObject.transform.position.y,directionToTarget.y) * moveSpeed;
         }
         else
         {
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-        }
+        }*/
     }
     private void OnCollisionEnter(Collision collision)
     {
