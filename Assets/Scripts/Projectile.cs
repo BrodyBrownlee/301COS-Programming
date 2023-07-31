@@ -34,6 +34,10 @@ public class Projectile : MonoBehaviour
         // Destroy the bullet after a specified lifetime
         //Destroy(gameObject, lifetime);
     }
+  void Update()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
