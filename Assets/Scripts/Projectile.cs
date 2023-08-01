@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 30f; // Speed of the bullet
+    public float speed; // Speed of the bullet
     public float lifetime = 2f; // Time in seconds before the bullet is destroyed
     Rigidbody Rb;
     int rotation;
@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     }
   void Update()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5,gameObject.transform.position.z);
     }
     // Update is called once per frame
     void FixedUpdate()

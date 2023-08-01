@@ -19,14 +19,24 @@ public class roomSpawn : MonoBehaviour
     }
     private void rSpawn()
     {
-       
         GameObject newRoom = Instantiate(pfRoom);
         newRoom.transform.position = roomLoc.transform.position;
     }
     private void doorSpawn()
     {
-            GameObject newDoor = Instantiate(pfDoor);
-            newDoor.transform.position = new Vector3(-80, 2, 45);
-            newDoor.transform.localScale = new Vector3(10, 10, 40);     
+        GameObject leftDoor = Instantiate(pfDoor);
+        leftDoor.transform.position = new Vector3(-80, 2, 45);
+        leftDoor.transform.localScale = new Vector3(10, 10, 40);     
+        GameObject rightDoor = Instantiate(pfDoor);
+        rightDoor.transform.position = new Vector3(70, 2, 35);
+        rightDoor.transform.localScale = new Vector3(10, 10, 40);
+        GameObject topDoor = Instantiate(pfDoor);
+        topDoor.transform.position = new Vector3(-5, 2, 110);
+        topDoor.transform.localScale = new Vector3(20, 10, 10);
+        topDoor.transform.Rotate(180,0,0);
+        GameObject bottomDoor = Instantiate(pfDoor);
+        bottomDoor.transform.position = new Vector3(-5, 2, -40);
+        bottomDoor.transform.localScale = new Vector3(20, 10, 10);
+        bottomDoor.transform.Rotate(180, 0, 0);
     }
 }

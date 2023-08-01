@@ -21,18 +21,18 @@ public class Player_Movement : MonoBehaviour
     }
     private void Update()
     {
-        
+     Cr.transform.position = new Vector3(Cr.transform.position.x,5, Cr.transform.position.z);
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        bool grounded = GroundCheck();
+      /*  bool grounded = GroundCheck();*/
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
         playerMovement.x = xMove * speed * Time.deltaTime;
         playerMovement.z = zMove * speed * Time.deltaTime;
 
-        if (grounded)
+        /*if (grounded)
         {
             yVelocity = -0.5f;
         }
@@ -40,13 +40,14 @@ public class Player_Movement : MonoBehaviour
         {
             yVelocity += gravity * Time.deltaTime * Time.deltaTime * gravityMultiplier;
         }
-        playerMovement.y = yVelocity;
+        playerMovement.y = yVelocity;*/
+
         Cr.Move(playerMovement);
 
-        bool GroundCheck()
+        /*bool GroundCheck()
         {
             return Cr.isGrounded;
-        }
+        }*/
     }
    
 }
