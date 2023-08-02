@@ -15,20 +15,23 @@ public class Player_Shoot : MonoBehaviour
         projectileSpawn = gameObject.transform.Find("Projectileposition").gameObject;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
         timer += Time.deltaTime;
         //if a directional key is being pressed create a bullet and rotate based on the direction
+        if (shootDelay < timer)
+        {
+            shootBullet();
+        }
+    }
+    private void shootBullet()
+    {
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (shootDelay < timer)
-            {
-                GameObject newBullet = Instantiate(pfBullet);
-                newBullet.transform.position = projectileSpawn.transform.position;
-                newBullet.transform.Rotate(0,0, getRotation());
-                timer = 0;
-            }
+            GameObject newBullet = Instantiate(pfBullet);
+            newBullet.transform.position = projectileSpawn.transform.position;
+            newBullet.transform.Rotate(0, 0, getRotation());
+            timer = 0;
         }
     }
     //finding the rotation based on the key press
@@ -38,15 +41,15 @@ public class Player_Shoot : MonoBehaviour
         {
             return 180; 
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             return 90;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             return 270;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow))
         {
             return 0;
         }

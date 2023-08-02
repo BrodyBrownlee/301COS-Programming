@@ -13,10 +13,12 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemySpawn.spawnerScript.numberOfEnemies == 0)
+        if (roomSpawn.roomScript.roomClear == true)
         {
+            roomSpawn.roomScript.doorsSpawned = false;
             Destroy(gameObject);
             return;
+           
         }
     }
 }

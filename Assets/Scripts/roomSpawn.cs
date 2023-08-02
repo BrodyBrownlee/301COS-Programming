@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class roomSpawn : MonoBehaviour
 {
+    public static roomSpawn roomScript;
+
     public GameObject pfRoom;
     public GameObject pfDoor;
+    public bool doorsSpawned;
+    public bool roomClear;
     public float doorNumber;
     private GameObject roomLoc;
 
@@ -15,7 +19,31 @@ public class roomSpawn : MonoBehaviour
         doorNumber = 4;
         roomLoc = GameObject.Find("roomOrigin");
         rSpawn();
-        doorSpawn();
+     
+    }
+    void Awake()
+    {
+       
+        roomScript = this;
+    }
+    void Update()
+    {
+        if (enemySpawn.spawnerScript.numberOfEnemies > 0)
+        {
+            roomClear = false;
+        }
+        else
+        {
+            roomClear = true;
+        }
+        if (doorsSpawned == false)
+        {
+            if (roomClear == false)
+            {
+                doorSpawn();
+                doorsSpawned = true;
+            }
+        }
     }
     private void rSpawn()
     {
@@ -38,5 +66,6 @@ public class roomSpawn : MonoBehaviour
         bottomDoor.transform.position = new Vector3(-5, 2, -40);
         bottomDoor.transform.localScale = new Vector3(20, 10, 10);
         bottomDoor.transform.Rotate(180, 0, 0);
+        return;
     }
 }

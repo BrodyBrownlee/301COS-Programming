@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     }
   void Update()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5,gameObject.transform.position.z);
+       /* gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5,gameObject.transform.position.z);*/
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -57,6 +57,11 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit");
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "door")
+        {
+            Debug.Log("Door Hit");
             Destroy(gameObject);
         }
     }

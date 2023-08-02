@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b314cbcc704352940aa13d6b3def9226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerScript: {fileID: 0}
   hp: 3
   moveSpeed: 10
   attackRange: 4
@@ -147,7 +146,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &7471354497369718434
 Rigidbody:
