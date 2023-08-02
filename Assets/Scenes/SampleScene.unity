@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -439,6 +439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfRoom: {fileID: 5606967769672293765, guid: 3e758d6bcacfc9e4fb435eeae30c5d6c, type: 3}
   pfDoor: {fileID: 5351814756868877083, guid: 16c27b6da3f75e641bf793529f033c51, type: 3}
+  doorsSpawned: 0
+  roomClear: 0
   doorNumber: 4
 --- !u!4 &926419626
 Transform:
