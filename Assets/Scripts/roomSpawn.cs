@@ -8,8 +8,10 @@ public class roomSpawn : MonoBehaviour
 
     public GameObject pfRoom;
     public GameObject pfDoor;
+    public GameObject pfTrigger;
     public bool doorsSpawned;
     public bool roomClear;
+    public bool triggerSpawned;
     public float doorNumber;
     private GameObject roomLoc;
 
@@ -42,6 +44,15 @@ public class roomSpawn : MonoBehaviour
             {
                 doorSpawn();
                 doorsSpawned = true;
+                triggerSpawned = false;
+            }
+        }
+        if(triggerSpawned == false)
+        {
+            if (roomClear)
+            {
+                spawnTriggers();
+                triggerSpawned = true;
             }
         }
     }
@@ -49,6 +60,24 @@ public class roomSpawn : MonoBehaviour
     {
         GameObject newRoom = Instantiate(pfRoom);
         newRoom.transform.position = roomLoc.transform.position;
+    }
+    private void spawnTriggers()
+    {
+        GameObject leftTrigger = Instantiate(pfTrigger);
+        leftTrigger.transform.position = new Vector3(-80, 2, 45);
+        leftTrigger.transform.localScale = new Vector3(10, 10, 40);
+        GameObject rightTrigger = Instantiate(pfTrigger);
+        rightTrigger.transform.position = new Vector3(70, 2, 35);
+        rightTrigger.transform.localScale = new Vector3(10, 10, 40);
+        GameObject topTrigger = Instantiate(pfTrigger);
+        topTrigger.transform.position = new Vector3(-5, 2, 110);
+        topTrigger.transform.localScale = new Vector3(20, 10, 10);
+        topTrigger.transform.Rotate(180, 0, 0);
+        GameObject bottomTrigger = Instantiate(pfTrigger);
+        bottomTrigger.transform.position = new Vector3(-5, 2, -40);
+        bottomTrigger.transform.localScale = new Vector3(20, 10, 10);
+        bottomTrigger.transform.Rotate(180, 0, 0);
+        return;
     }
     private void doorSpawn()
     {
