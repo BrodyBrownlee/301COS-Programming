@@ -63,20 +63,27 @@ public class roomSpawn : MonoBehaviour
     }
     private void spawnTriggers()
     {
-        GameObject leftTrigger = Instantiate(pfTrigger);
-        leftTrigger.transform.position = new Vector3(-80, 2, 45);
-        leftTrigger.transform.localScale = new Vector3(10, 10, 40);
-        GameObject rightTrigger = Instantiate(pfTrigger);
-        rightTrigger.transform.position = new Vector3(70, 2, 35);
-        rightTrigger.transform.localScale = new Vector3(10, 10, 40);
         GameObject topTrigger = Instantiate(pfTrigger);
+        topTrigger.name = "topTrigger";
         topTrigger.transform.position = new Vector3(-5, 2, 110);
-        topTrigger.transform.localScale = new Vector3(20, 10, 10);
+        topTrigger.transform.localScale = new Vector3(20, 10, 9);
         topTrigger.transform.Rotate(180, 0, 0);
+
         GameObject bottomTrigger = Instantiate(pfTrigger);
+        bottomTrigger.name = "bottomTrigger";
         bottomTrigger.transform.position = new Vector3(-5, 2, -40);
-        bottomTrigger.transform.localScale = new Vector3(20, 10, 10);
+        bottomTrigger.transform.localScale = new Vector3(20, 10, 9);
         bottomTrigger.transform.Rotate(180, 0, 0);
+      
+        GameObject leftTrigger = Instantiate(pfTrigger);
+        leftTrigger.name = "leftTrigger";
+        leftTrigger.transform.position = new Vector3(-80, 2, 35);
+        leftTrigger.transform.localScale = new Vector3(9, 10, 20);
+      
+        GameObject rightTrigger = Instantiate(pfTrigger);
+        rightTrigger.name = "rightTrigger";
+        rightTrigger.transform.position = new Vector3(70, 2, 35);
+        rightTrigger.transform.localScale = new Vector3(9, 10, 20);
         return;
     }
     private void doorSpawn()

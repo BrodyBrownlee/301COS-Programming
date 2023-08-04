@@ -224,9 +224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 32
-  gravity: -9.81
-  gravityMultiplier: 0
-  jumpingPower: 16
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -439,8 +436,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfRoom: {fileID: 5606967769672293765, guid: 3e758d6bcacfc9e4fb435eeae30c5d6c, type: 3}
   pfDoor: {fileID: 5351814756868877083, guid: 16c27b6da3f75e641bf793529f033c51, type: 3}
+  pfTrigger: {fileID: 8229367459267779540, guid: c1239118339fe36428508e18d2f6c417, type: 3}
   doorsSpawned: 0
   roomClear: 0
+  triggerSpawned: 0
   doorNumber: 4
 --- !u!4 &926419626
 Transform:
