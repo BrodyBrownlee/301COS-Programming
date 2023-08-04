@@ -9,6 +9,13 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfRoom;
     public GameObject pfDoor;
     public GameObject pfTrigger;
+    roomCoords roomCoords;
+    public struct roomCoords
+    {
+        public float roomX;
+        public float roomY;
+    }
+    
     public bool doorsSpawned;
     public bool roomClear;
     public bool triggerSpawned;
@@ -18,6 +25,7 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         doorNumber = 4;
         roomLoc = GameObject.Find("roomOrigin");
         rSpawn();
