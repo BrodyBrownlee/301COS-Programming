@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        roomSpawn.roomScript.doorsSpawned = true;
     }
 
     // Update is called once per frame
@@ -15,10 +15,10 @@ public class Door : MonoBehaviour
     {
         if (roomSpawn.roomScript.roomClear == true)
         {
-            roomSpawn.roomScript.doorsSpawned = false;
-            Destroy(gameObject);
-            return;
-           
+            if(roomSpawn.roomScript.doorsSpawned== true) {
+                Destroy(gameObject);
+                return;
+            }
         }
     }
 }

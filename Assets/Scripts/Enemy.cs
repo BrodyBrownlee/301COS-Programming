@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private bool canAttack;
     public  GameObject target;
     public NavMeshAgent agent;
+    NavMeshPath path = new NavMeshPath();
     private Vector2 directionToTarget;
 
     // Start is called before the first frame update
@@ -28,10 +29,7 @@ public class Enemy : MonoBehaviour
     {
         gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
-        if (target != null)
-        {
-            agent.SetDestination(target.transform.position);
-        }
+        
         if (hp <= 0)
         {
             Debug.Log("enemy dead");
@@ -43,6 +41,10 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (target != null)
+        {
+            agent.SetDestination(target.transform.position);
+        }
         /*if(!canAttack)
         {
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(directionToTarget.x, gameObject.transform.position.y,directionToTarget.y) * moveSpeed;
