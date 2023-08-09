@@ -13,9 +13,12 @@ public class roomTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if the room has not been cleared
         if (roomSpawn.roomScript.roomClear == false)
         {
+            //destroy triggers
             Destroy(gameObject);
+            //return to avoid errors
             return;
         }
     }
