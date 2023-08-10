@@ -6,10 +6,11 @@ using Unity.AI;
 public class enemySpawn : MonoBehaviour
 {
     public static enemySpawn spawnerScript;
+
     public GameObject pfEnemy;
     private GameObject enemyLoc;
-    public float numberOfEnemies = 0;
-    public float maxNumEnemies = 10;
+    public float numberOfEnemies = 0;//current enemy number
+    public float maxNumEnemies = 10;//maximum number of enemies able to be spawned with rightbracket
     // Start is called before the first frame update
     void Start()
     {

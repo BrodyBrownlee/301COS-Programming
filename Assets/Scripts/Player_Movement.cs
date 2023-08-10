@@ -15,19 +15,28 @@ public class Player_Movement : MonoBehaviour
     {
         Cr = GetComponent<CharacterController>();
     }
+    //update called every frame
     private void Update()
     {
+        //sets character controller y to 5 to help with collision
      Cr.transform.position = new Vector3(Cr.transform.position.x,5, Cr.transform.position.z);
     }
-    // Update is called once per frame
+    // Update is called set number of times per second 
     void FixedUpdate()
     {
+        //player movement 
+
+        //movement on the x axis is equal to the horizontal input, if left x = -1, if right = 1
         float xMove = Input.GetAxisRaw("Horizontal");
+        //movement on the z axis is equal to the vertical input, if up y = 1, if down y = -1
         float zMove = Input.GetAxisRaw("Vertical");
+        //gets the playermovement x and z by mutiplying the x and z move values by speed and Time.Deltatime for consistency when lagging
         playerMovement.x = xMove * speed * Time.deltaTime;
         playerMovement.z = zMove * speed * Time.deltaTime;
+        //applies the movement to the player
         Cr.Move(playerMovement);
     }
+    //player collision with triggers
     void OnTriggerEnter(Collider other)
     {
         if(other.name == "leftTrigger")
