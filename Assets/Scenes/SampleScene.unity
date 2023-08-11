@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 926419626}
   - component: {fileID: 926419625}
   m_Layer: 0
-  m_Name: roomOrigin
+  m_Name: roomOrigin(1,1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

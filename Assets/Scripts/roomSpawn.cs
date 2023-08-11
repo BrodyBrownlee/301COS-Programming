@@ -11,15 +11,10 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfDoor;
     public GameObject pfTrigger;
     //struct for the room coordinates which will be used to determine if a room has already been cleared.
-    public struct roomCoords
-    {
-        public float roomX;
-        public float roomY;
-    }
 
-    public roomCoords roomCoordinates;
+    int[,] roomArray = new int[6, 4];
 
-    public List<roomCoords> roomList;
+    public List<int> roomList;
 
     //bools for events on room clear and spawning of doors and triggers
     public bool doorsSpawned;
@@ -31,8 +26,6 @@ public class roomSpawn : MonoBehaviour
     void Start()
     {
         //starts coords at 1,1
-        roomCoordinates.roomX = 1;
-        roomCoordinates.roomY = 1;
         //finds gameobject for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
         rSpawn();
