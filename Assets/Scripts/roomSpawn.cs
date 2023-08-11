@@ -13,7 +13,8 @@ public class roomSpawn : MonoBehaviour
     //struct for the room coordinates which will be used to determine if a room has already been cleared.
 
     int[,] roomArray = new int[6, 4];
-
+    int floorWidth = 4;
+    int floorHeight = 6;
     public List<int> roomList;
 
     //bools for events on room clear and spawning of doors and triggers
@@ -25,7 +26,15 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //starts coords at 1,1
+        
+        //setting up the prefab values for the rooms 
+        for(int i = 0; i < floorHeight; i++)
+        {
+            for (int h = 0; i < floorWidth; h++)
+            {
+                roomArray[i, h] = ;
+            }
+        }
         //finds gameobject for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
         rSpawn();
