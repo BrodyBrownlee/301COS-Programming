@@ -440,7 +440,6 @@ MonoBehaviour:
   doorsSpawned: 0
   roomClear: 0
   triggerSpawned: 0
-  doorNumber: 4
 --- !u!4 &926419626
 Transform:
   m_ObjectHideFlags: 0
@@ -513,9 +512,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 1
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 10
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -541,7 +540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 500, z: 50}
+  m_LocalPosition: {x: -5, y: 925, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -595,6 +594,56 @@ MonoBehaviour:
   pfEnemy: {fileID: 4301168360677136072, guid: b747f995592b6074892d46b5429df7b8, type: 3}
   numberOfEnemies: 0
   maxNumEnemies: 10
+--- !u!1 &1953514266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1953514268}
+  - component: {fileID: 1953514267}
+  m_Layer: 0
+  m_Name: roomOrigin(0,1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1953514267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953514266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9186142aa7888ac48a8e5e8781eac113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfRoom: {fileID: 5606967769672293765, guid: 3e758d6bcacfc9e4fb435eeae30c5d6c, type: 3}
+  pfDoor: {fileID: 5351814756868877083, guid: 16c27b6da3f75e641bf793529f033c51, type: 3}
+  pfTrigger: {fileID: 8229367459267779540, guid: c1239118339fe36428508e18d2f6c417, type: 3}
+  doorsSpawned: 0
+  roomClear: 0
+  triggerSpawned: 0
+--- !u!4 &1953514268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953514266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -145, y: 2, z: 35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &2098001239
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class roomSpawn : MonoBehaviour
         public float roomX;
         public float roomY;
     }
+
     public roomCoords roomCoordinates;
 
     public List<roomCoords> roomList;
@@ -29,13 +30,12 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //starts coords at 0,0
-        roomCoordinates.roomX = 0;
-        roomCoordinates.roomY = 0;
+        //starts coords at 1,1
+        roomCoordinates.roomX = 1;
+        roomCoordinates.roomY = 1;
         //finds gameobject for room location 
-        roomLoc = GameObject.Find("roomOrigin");
+        roomLoc = GameObject.Find("roomOrigin(1,1)");
         rSpawn();
-     
     }
     void Awake()
     {
@@ -116,12 +116,12 @@ public class roomSpawn : MonoBehaviour
     {
         //spawning and translating the left door
         GameObject leftDoor = Instantiate(pfDoor);
-        leftDoor.transform.position = new Vector3(-80, 2, 45);
-        leftDoor.transform.localScale = new Vector3(10, 10, 40);
+        leftDoor.transform.position = new Vector3(-80, 2, 35);
+        leftDoor.transform.localScale = new Vector3(10, 10, 20);
         //spawning and translating the right door
         GameObject rightDoor = Instantiate(pfDoor);
         rightDoor.transform.position = new Vector3(70, 2, 35);
-        rightDoor.transform.localScale = new Vector3(10, 10, 40);
+        rightDoor.transform.localScale = new Vector3(10, 10, 20);
         //spawning and translating the top door
         GameObject topDoor = Instantiate(pfDoor);
         topDoor.transform.position = new Vector3(-5, 2, 110);
