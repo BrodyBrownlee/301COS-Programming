@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
         Rb.velocity = direction * speed;
     }
     /// <summary>
-    /// destroys bullet based on what it collides with using the objects tag
+    /// destroys bullet based on what it collides with using the tag
     /// </summary>
    
     private void OnCollisionEnter(Collision collision)

@@ -42,34 +42,41 @@ public class Player_Movement : MonoBehaviour
         if(other.name == "leftTrigger")
         {
             Debug.Log("Left Trigger");
-            roomSpawn.roomScript.roomCoordinates.roomX -= 1;
             Cr.enabled = false;
             Cr.transform.position = new Vector3(60, 5, Cr.transform.position.z);
             Cr.enabled = true;
+
+            //subtracting one from roomX
         }
         else if (other.name == "rightTrigger")
         {
             Debug.Log("right Trigger");
-            roomSpawn.roomScript.roomCoordinates.roomX += 1;
+            //stops character controller from preventing tp
             Cr.enabled = false;
             Cr.transform.position = new Vector3(-69, 5, Cr.transform.position.z);
             Cr.enabled = true;
+
+            //adding one to roomX
         }
         else if (other.name == "topTrigger")
         {
             Debug.Log("top Trigger");
-            roomSpawn.roomScript.roomCoordinates.roomY += 1;
+            //stops character controller from preventing tp
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, -20);
             Cr.enabled = true;
+
+            //adding one to roomY
         }
         else if (other.name == "bottomTrigger")
         {
             Debug.Log("bottom Trigger");
-            roomSpawn.roomScript.roomCoordinates.roomY -= 1;
+            //stops character controller from preventing tp
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, 98);
             Cr.enabled = true;
+
+            //subtracting one from roomY
         }
 
     }
