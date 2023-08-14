@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
             //if doors have been spawned
             if(roomSpawn.roomScript.doorsSpawned== true) {
                 //destroy the door objects
+                roomSpawn.roomScript.doorsSpawned = false;
                 Destroy(gameObject);
                 //return to stop errors
                 return;

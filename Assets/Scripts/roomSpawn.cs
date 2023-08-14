@@ -89,11 +89,10 @@ public class roomSpawn : MonoBehaviour
             if (roomClear == false)
             {
                 doorsSpawned = true;
+                //remove the room transition triggers
                 triggerSpawned = false;
                 //spawn doors
                 doorSpawn();
-                //remove the room transition triggers
-             
             }
         }
         //if triggers haven't been spawned
@@ -102,7 +101,6 @@ public class roomSpawn : MonoBehaviour
             //if room is clear
             if (roomClear)
             {
-                triggerSpawned = true;
                 spawnTriggers();
             }
         }
