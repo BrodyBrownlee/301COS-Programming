@@ -61,7 +61,14 @@ public class roomSpawn : MonoBehaviour
         {
             Debug.Log(e);
         }
-        //finds gameobject for room location 
+
+        Debug.Log($"{roomArray[0,0].ToString()}{roomArray[0, 1].ToString()}{roomArray[0, 2].ToString()}{roomArray[0, 3].ToString()}");
+        Debug.Log($"{roomArray[1, 0].ToString()}{roomArray[1, 1].ToString()}{roomArray[1, 2].ToString()}{roomArray[1, 3].ToString()}");
+        Debug.Log($"{roomArray[2, 0].ToString()}{roomArray[2, 1].ToString()}{roomArray[2, 2].ToString()}{roomArray[2, 3].ToString()}");
+        Debug.Log($"{roomArray[3, 0].ToString()}{roomArray[3, 1].ToString()}{roomArray[3, 2].ToString()}{roomArray[3, 3].ToString()}");
+        Debug.Log($"{roomArray[4, 0].ToString()}{roomArray[4, 1].ToString()}{roomArray[4, 2].ToString()}{roomArray[4, 3].ToString()}");
+        Debug.Log($"{roomArray[5, 0].ToString()}{roomArray[5, 1].ToString()}{roomArray[5, 2].ToString()}{roomArray[5, 3].ToString()}");
+        //finds gameobject for room location
         roomLoc = GameObject.Find("roomOrigin(1,1)");
         rSpawn();
     }
