@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
 
 public class roomSpawn : MonoBehaviour
 {
@@ -10,11 +12,9 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfRoom;
     public GameObject pfDoor;
     public GameObject pfTrigger;
-    //struct for the room coordinates which will be used to determine if a room has already been cleared.
+    //array for the room coordinates which will be used to determine if a room has already been cleared.
+    int[,] roomArray;
 
-    int[,] roomArray = new int[6, 4];
-    int floorWidth = 4;
-    int floorHeight = 6;
     public List<int> roomList;
 
     //bools for events on room clear and spawning of doors and triggers
@@ -26,14 +26,40 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        //setting up the prefab values for the rooms 
-        for(int i = 0; i < floorHeight; i++)
+        //setting up the values for the rooms 
+        try
         {
-            for (int h = 0; i < floorWidth; h++)
+            //reading the values from the text file
+
+            using (StreamReader reader = new StreamReader("Assets/Text_Files/map_layout.txt"))
             {
-                roomArray[i, h] = ;
+                //reading the height and width from the first two lines
+                int floorHeight = int.Parse(reader.ReadLine());
+                int floorWidth = int.Parse(reader.ReadLine());
+
+                //sets size of array from the values
+                roomArray = new int[floorHeight,floorWidth];
+              
+                //loop for floor height
+                for (int i = 0; i < floorHeight; i++)
+                {
+                    //seperates the values splitting each line at a comma
+                    string[] values = reader.ReadLine().Split(',');
+                    
+                    //loop for the floor width
+                    for (int h = 0; h < floorWidth; h++)
+                    {
+                        //sets the value of the coordinate in the array to the value from the text file
+                        roomArray[i, h] = int.Parse(values[h]);
+                        //display in the debug
+                        Debug.Log(values[h]);
+                    }
+                }
             }
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e);
         }
         //finds gameobject for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
@@ -62,10 +88,12 @@ public class roomSpawn : MonoBehaviour
             //if more enemies have spawned since they opened
             if (roomClear == false)
             {
+                doorsSpawned = true;
+                triggerSpawned = false;
                 //spawn doors
                 doorSpawn();
                 //remove the room transition triggers
-                triggerSpawned = false;
+             
             }
         }
         //if triggers haven't been spawned
@@ -74,8 +102,8 @@ public class roomSpawn : MonoBehaviour
             //if room is clear
             if (roomClear)
             {
-                spawnTriggers();
                 triggerSpawned = true;
+                spawnTriggers();
             }
         }
     }
