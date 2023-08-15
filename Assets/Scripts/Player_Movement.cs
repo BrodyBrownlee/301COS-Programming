@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class Player_Movement : MonoBehaviour
 {
+    public static Player_Movement playerScript;
     public float speed = 32f;
     private Vector3 playerMovement;
     CharacterController Cr;
     public LayerMask groundLayer;
+    public float playerX;
+    public float playerY;
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = this;
         Cr = GetComponent<CharacterController>();
     }
     //update called every frame
@@ -47,6 +51,7 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = true;
 
             //subtracting one from roomX
+            playerX--;
         }
         else if (other.name == "rightTrigger")
         {
@@ -57,6 +62,7 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = true;
 
             //adding one to roomX
+            playerX++;
         }
         else if (other.name == "topTrigger")
         {
@@ -65,6 +71,9 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, -20);
             Cr.enabled = true;
+
+            //moving one room up(reversed because of 2d array)
+            playerY--;
 
             //adding one to roomY
         }
@@ -76,10 +85,9 @@ public class Player_Movement : MonoBehaviour
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, 98);
             Cr.enabled = true;
 
-            //subtracting one from roomY
+          //moving one room down
+            playerY++;
         }
-
-    }
-   
+    } 
 }
         

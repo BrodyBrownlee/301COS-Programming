@@ -34,9 +34,12 @@ public class Enemy : MonoBehaviour
             //destroy enemy; 
             Debug.Log("enemy dead");
             Destroy(gameObject);
-            //subtract one from the number of enemies
-            enemySpawn.spawnerScript.numberOfEnemies--;
-            return;
+            if(enemySpawn.spawnerScript != null) {
+                //subtract one from the number of enemies
+                enemySpawn.spawnerScript.numberOfEnemies--;
+                return;
+            }
+          
         }
       
     }
