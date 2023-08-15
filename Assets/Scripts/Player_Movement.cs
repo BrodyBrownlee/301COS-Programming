@@ -11,8 +11,8 @@ public class Player_Movement : MonoBehaviour
     private Vector3 playerMovement;
     CharacterController Cr;
     public LayerMask groundLayer;
-    public float playerX;
-    public float playerY;
+    public int playerX;
+    public int playerY;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,15 @@ public class Player_Movement : MonoBehaviour
     {
         //sets character controller y to 5 to help with collision
      Cr.transform.position = new Vector3(Cr.transform.position.x,5, Cr.transform.position.z);
+
+        if(playerX < 0)
+        {
+          playerX = 0;
+        }
+        if(playerY < 0)
+        {
+          playerY = 0;
+        }
     }
     // Update is called set number of times per second 
     void FixedUpdate()
@@ -49,7 +58,24 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(60, 5, Cr.transform.position.z);
             Cr.enabled = true;
-
+            //calls the room has been changed
+            if (wall.wallScript != null)
+            {
+                wall.wallScript.roomChange();
+            }
+            if (room.roomScript != null)
+            {
+                Debug.Log("room changed");
+                room.roomScript.roomChange();
+            }
+            if (roomSpawn.roomScript != null)
+            {
+                if (room.roomScript.roomChanged == true)
+                {
+                    roomSpawn.roomScript.rSpawn();
+                    room.roomScript.roomChanged = false;
+                }
+            }
             //subtracting one from roomX
             playerX--;
         }
@@ -60,7 +86,24 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(-69, 5, Cr.transform.position.z);
             Cr.enabled = true;
-
+            //calls the room has been changed
+            if (wall.wallScript != null)
+            {
+                wall.wallScript.roomChange();
+            }
+            if (room.roomScript != null)
+            {
+                Debug.Log("room changed");
+                room.roomScript.roomChange();
+            }
+            if (roomSpawn.roomScript != null)
+            {
+                if (room.roomScript.roomChanged == true)
+                {
+                    roomSpawn.roomScript.rSpawn();
+                    room.roomScript.roomChanged = false;
+                }
+            }
             //adding one to roomX
             playerX++;
         }
@@ -71,7 +114,24 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, -20);
             Cr.enabled = true;
-
+            //calls the room has been changed
+            if (wall.wallScript != null)
+            {
+                wall.wallScript.roomChange();
+            }
+            if (room.roomScript != null)
+            {
+                Debug.Log("room changed");
+                room.roomScript.roomChange();
+            }
+            if (roomSpawn.roomScript != null)
+            {
+                if (room.roomScript.roomChanged == true)
+                {
+                    roomSpawn.roomScript.rSpawn();
+                    room.roomScript.roomChanged = false;
+                }
+            }
             //moving one room up(reversed because of 2d array)
             playerY--;
 
@@ -84,8 +144,25 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, 98);
             Cr.enabled = true;
-
-          //moving one room down
+            //calls the room has been changed
+            if (wall.wallScript != null)
+            {
+                wall.wallScript.roomChange();
+            }
+            if (room.roomScript != null)
+            {
+                Debug.Log("room changed");
+                room.roomScript.roomChange();
+            }
+            if (roomSpawn.roomScript != null)
+            {
+                if(room.roomScript.roomChanged == true)
+                {
+                    roomSpawn.roomScript.rSpawn();
+                    room.roomScript.roomChanged = false;
+                }
+            }
+            //moving one room down
             playerY++;
         }
     } 

@@ -9,13 +9,7 @@ public class roomSpawn : MonoBehaviour
     //allows for calling of variables in other classes
     public static roomSpawn roomScript;
 
-    public GameObject startRoom;
-    public GameObject treasureRoom;
-    public GameObject bossRoom;
-    public GameObject basicRoom;
-    public GameObject basicRoom_2;
-    public GameObject basicRoom_3;
-    public GameObject basicRoom_4;
+    public GameObject pfRoom;
     public GameObject pfDoor;
     public GameObject pfTrigger;
     public GameObject pfWall;
@@ -24,11 +18,11 @@ public class roomSpawn : MonoBehaviour
 
     //list for the cleared rooms
     public List<int> roomList;
+
     //bools for events on room clear and spawning of doors and triggers
     public bool doorsSpawned;
     public bool roomClear;
     public bool triggerSpawned;
-    public float roomValue;
     private GameObject roomLoc;
     //floor width and height
     int floorWidth;
@@ -66,7 +60,7 @@ public class roomSpawn : MonoBehaviour
                         //sets the value of the coordinate in the array to the value from the text file
                         roomArray[i, h] = int.Parse(values[h]);
                         //display in the debug
-                     /*   Debug.Log(values[h]);*/
+                        Debug.Log(values[h]);
                     }
                 }
             }
@@ -76,14 +70,14 @@ public class roomSpawn : MonoBehaviour
             Debug.Log(e);
         }
 
-     /*   Debug.Log($"{roomArray[0,0].ToString()}{roomArray[0, 1].ToString()}{roomArray[0, 2].ToString()}{roomArray[0, 3].ToString()}");
+        Debug.Log($"{roomArray[0,0].ToString()}{roomArray[0, 1].ToString()}{roomArray[0, 2].ToString()}{roomArray[0, 3].ToString()}");
         Debug.Log($"{roomArray[1, 0].ToString()}{roomArray[1, 1].ToString()}{roomArray[1, 2].ToString()}{roomArray[1, 3].ToString()}");
         Debug.Log($"{roomArray[2, 0].ToString()}{roomArray[2, 1].ToString()}{roomArray[2, 2].ToString()}{roomArray[2, 3].ToString()}");
         Debug.Log($"{roomArray[3, 0].ToString()}{roomArray[3, 1].ToString()}{roomArray[3, 2].ToString()}{roomArray[3, 3].ToString()}");
         Debug.Log($"{roomArray[4, 0].ToString()}{roomArray[4, 1].ToString()}{roomArray[4, 2].ToString()}{roomArray[4, 3].ToString()}");
         Debug.Log($"{roomArray[5, 0].ToString()}{roomArray[5, 1].ToString()}{roomArray[5, 2].ToString()}{roomArray[5, 3].ToString()}");
-    */
 
+        
         //finds gameobject for room location
         //setting player coordinates to the start room location
         for (int i = 0; i < floorHeight; i++)
@@ -101,21 +95,17 @@ public class roomSpawn : MonoBehaviour
 
         //finds gameobject for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
-       
+        rSpawn();
     }
     //calls the instance the script is 
     void Awake()
     {
        //creates an instance of the class to allow calling of variables from other classes
         roomScript = this;
-        rSpawn();
     }
     void Update()
     {
-        if(Player_Movement.playerScript != null)
-        {
-            roomValue = roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-        }
+
         if (enemySpawn.spawnerScript != null)
         {
             //if enemies are in the room
@@ -152,72 +142,11 @@ public class roomSpawn : MonoBehaviour
             }
     }
     //spawning the room based on the prefab selected
-    public void rSpawn()
+    private void rSpawn()
     {
-        //finding which room should be spawned based on the values set in the array
-
-        if (roomValue == 1)
-        {
-            Debug.Log("Created Room 1");
-            //moving room to the position set by the roomLoc object
-            GameObject newRoom = Instantiate(startRoom);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if(roomValue == 2)
-        {
-            Debug.Log("Created Room 2");
-            GameObject newRoom = Instantiate(treasureRoom);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if (roomValue == 3)
-        {
-            Debug.Log("Created Room 3");
-            GameObject newRoom = Instantiate(bossRoom);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if (roomValue == 4)
-        {
-            Debug.Log("Created Room 4");
-            GameObject newRoom = Instantiate(basicRoom);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if (roomValue == 5)
-        {
-            Debug.Log("Created Room 5");
-            GameObject newRoom = Instantiate(basicRoom_2);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if (roomValue == 6)
-        {
-            Debug.Log("Created Room 6");
-            GameObject newRoom = Instantiate(basicRoom_3);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else if (roomValue == 7)
-        {
-            Debug.Log("Created Room 7");
-            GameObject newRoom = Instantiate(basicRoom_4);
-            newRoom.transform.position = roomLoc.transform.position;
-        }
-        else
-        {
-            // set the players x and y back to the spawn room 
-
-            for (int i = 0; i < floorHeight; i++)
-            {
-                //loop for the floor width
-                for (int h = 0; h < floorWidth; h++)
-                {
-                    if (roomArray[i, h] == 1)
-                    {
-                        Player_Movement.playerScript.playerX = h;
-                        Player_Movement.playerScript.playerY = i;
-                        GameObject newRoom = Instantiate(startRoom);
-                        newRoom.transform.position = roomLoc.transform.position;
-                    }
-                }
-            }
-        }
+        GameObject newRoom = Instantiate(pfRoom);
+        //moving room to the position set by the roomLoc object
+        newRoom.transform.position = roomLoc.transform.position;
     }
     //spawning triggers
     private void spawnTriggers()
