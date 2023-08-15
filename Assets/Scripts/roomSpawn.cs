@@ -15,6 +15,7 @@ public class roomSpawn : MonoBehaviour
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     int[,] roomArray;
 
+    //list for the cleared rooms
     public List<int> roomList;
 
     //bools for events on room clear and spawning of doors and triggers
@@ -22,10 +23,16 @@ public class roomSpawn : MonoBehaviour
     public bool roomClear;
     public bool triggerSpawned;
     private GameObject roomLoc;
+    //floor width and height
+    int floorWidth;
+    int floorHeight;
 
     // Start is called before the first frame update
     void Start()
     {
+        //remove the room transition triggers
+        triggerSpawned = false;
+
         //setting up the values for the rooms 
         try
         {
@@ -34,8 +41,8 @@ public class roomSpawn : MonoBehaviour
             using (StreamReader reader = new StreamReader("Assets/Text_Files/map_layout.txt"))
             {
                 //reading the height and width from the first two lines
-                int floorHeight = int.Parse(reader.ReadLine());
-                int floorWidth = int.Parse(reader.ReadLine());
+                 floorHeight = int.Parse(reader.ReadLine());
+                 floorWidth = int.Parse(reader.ReadLine());
 
                 //sets size of array from the values
                 roomArray = new int[floorHeight,floorWidth];
@@ -69,9 +76,25 @@ public class roomSpawn : MonoBehaviour
         Debug.Log($"{roomArray[4, 0].ToString()}{roomArray[4, 1].ToString()}{roomArray[4, 2].ToString()}{roomArray[4, 3].ToString()}");
         Debug.Log($"{roomArray[5, 0].ToString()}{roomArray[5, 1].ToString()}{roomArray[5, 2].ToString()}{roomArray[5, 3].ToString()}");
         //finds gameobject for room location
+        //setting player coordinates to the start room location
+        for (int i = 0; i < floorHeight; i++)
+        {
+            //loop for the floor width
+            for (int h = 0; h < floorWidth; h++)
+            {
+                if (roomArray[i, h] == 1)
+                {
+                    Player_Movement.playerScript.playerX = h;
+                    Player_Movement.playerScript.playerY = i;
+                }
+            }
+        }
+
+        //finds gameobject for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
         rSpawn();
     }
+    //calls the instance the script is 
     void Awake()
     {
        //creates an instance of the class to allow calling of variables from other classes
@@ -79,38 +102,41 @@ public class roomSpawn : MonoBehaviour
     }
     void Update()
     {
-        //if enemies are in the room
-        if (enemySpawn.spawnerScript.numberOfEnemies > 0)
+
+        if (enemySpawn.spawnerScript != null)
         {
-            roomClear = false;
-        }
-        else
-        {
-            //if no enemies
-            roomClear = true;
-        }
-        //if there are no doors(room has been cleared)
-        if (doorsSpawned == false)
-        {
-            //if more enemies have spawned since they opened
-            if (roomClear == false)
+            //if enemies are in the room
+            if (enemySpawn.spawnerScript.numberOfEnemies > 0)
             {
-                doorsSpawned = true;
-                //remove the room transition triggers
-                triggerSpawned = false;
-                //spawn doors
+                roomClear = false;
+            }
+            else
+            {
+                //if no enemies
+                roomClear = true;
+            }
+        }
+        //if room isn't clear
+        if (!roomClear)
+        {
+            if(!doorsSpawned)
+            {
                 doorSpawn();
+                doorsSpawned = true;
+                triggerSpawned = false;
             }
         }
         //if triggers haven't been spawned
-        if(triggerSpawned == false)
-        {
             //if room is clear
             if (roomClear)
             {
-                spawnTriggers();
+                if(!triggerSpawned)
+                {
+                    spawnTriggers();
+                    triggerSpawned = true;
+                    doorsSpawned = false;
+                }
             }
-        }
     }
     //spawning the room based on the prefab selected
     private void rSpawn()

@@ -10,20 +10,22 @@ public class Door : MonoBehaviour
        //doors have been spawned
         roomSpawn.roomScript.doorsSpawned = true;
     }
-
     // Update is called once per frame
     void Update()
     {
-        //if the room has been cleared
-        if (roomSpawn.roomScript.roomClear == true)
+        if(roomSpawn.roomScript !=  null)
         {
-            //if doors have been spawned
-            if(roomSpawn.roomScript.doorsSpawned== true) {
-                //destroy the door objects
-                roomSpawn.roomScript.doorsSpawned = false;
-                Destroy(gameObject);
-                //return to stop errors
-                return;
+            //if the room has been cleared
+            if (roomSpawn.roomScript.roomClear == true)
+            {
+                //if doors have been spawned
+                if (roomSpawn.roomScript.doorsSpawned == false)
+                {
+                    //destroy the door objects
+                    Destroy(gameObject);
+                    //return to stop errors
+                    return;
+                }
             }
         }
     }
