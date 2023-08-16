@@ -99,7 +99,10 @@ public class roomSpawn : MonoBehaviour
 
         //finds game object for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
-        roomValue = 1;
+        if (Player_Movement.playerScript != null)
+        {
+            roomValue = roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
+        }
         rSpawn();
         doorSpawn();
     }
@@ -111,11 +114,6 @@ public class roomSpawn : MonoBehaviour
     }
     void Update()
     {
-        if (Player_Movement.playerScript != null)
-        {
-            roomValue = roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-        }
-
         if (enemySpawn.spawnerScript != null)
         {
             //if enemies are in the room
@@ -260,7 +258,7 @@ public class roomSpawn : MonoBehaviour
     {
         if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] == 0)
         {
-                leftWallSpawn();
+          leftWallSpawn();
         }
         if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX + 1] == 0 )
         {
