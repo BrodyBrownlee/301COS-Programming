@@ -71,12 +71,8 @@ public class Player_Movement : MonoBehaviour
             {
                 if (room.roomScript.roomChanged == true)
                 {
-                    if (Player_Movement.playerScript != null)
-                    {
-                        roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-                        roomSpawn.roomScript.rSpawn();
-                        room.roomScript.roomChanged = false;
-                    }
+                    roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
+                    roomSpawn.roomScript.rSpawn();
                 }
             }
         }
@@ -100,13 +96,8 @@ public class Player_Movement : MonoBehaviour
             {
                 if (room.roomScript.roomChanged == true)
                 {
-                    if (Player_Movement.playerScript != null)
-                    {
-                        roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-                        roomSpawn.roomScript.rSpawn();
-                        room.roomScript.roomChanged = false;
-                    }
-                 
+                    roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
+                    roomSpawn.roomScript.rSpawn();
                 }
             }
         }
@@ -119,23 +110,12 @@ public class Player_Movement : MonoBehaviour
             Cr.enabled = false;
             Cr.transform.position = new Vector3(Cr.transform.position.x, 5, -65);
             Cr.enabled = true;
-          /*  //calls the room has been changed
-            wall.wallScript.roomChange();*/
-            if (room.roomScript != null)
-            {
-                Debug.Log("room changed");
-                room.roomScript.roomChange();
-            }
             if (roomSpawn.roomScript != null)
             {
                 if (room.roomScript.roomChanged == true)
                 {
-                    if (Player_Movement.playerScript != null)
-                    {
-                        roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-                        roomSpawn.roomScript.rSpawn();
-                        room.roomScript.roomChanged = false;
-                    }
+                    roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
+                    roomSpawn.roomScript.rSpawn();
                 }
             }
 
@@ -155,12 +135,9 @@ public class Player_Movement : MonoBehaviour
             {
                 if(room.roomScript.roomChanged == true)
                 {
-                    if (Player_Movement.playerScript != null)
-                    {
-                        //sets the room value before changing the room so that the room is properly updated
-                        roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
-                        roomSpawn.roomScript.rSpawn();
-                    }
+                     //sets the room value before changing the room so that the room is properly updated
+                     roomSpawn.roomScript.roomValue = roomSpawn.roomScript.roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX];
+                     roomSpawn.roomScript.rSpawn();
                 }
             }
         }
