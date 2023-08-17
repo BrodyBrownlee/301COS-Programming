@@ -23,8 +23,6 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfWall;
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     public int[,] roomArray;
-    int maxY;
-    int maxX;
     //list for the cleared rooms
     public List<int> roomList;
     //bool for events on room clear and spawning of doors and triggers

@@ -17,7 +17,11 @@ public class wall : MonoBehaviour
     }
     public void roomChange()
     {
-       Debug.Log("wall destroyed"); 
-       Destroy(gameObject);
+       Debug.Log("wall destroyed");
+       var walls = GameObject.FindGameObjectsWithTag("blockingDoors");
+        foreach(var wall in walls)
+        {
+            Destroy(wall);
+        }
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3871756663213809561}
   m_Layer: 0
   m_Name: wall
-  m_TagString: door
+  m_TagString: blockingDoors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
