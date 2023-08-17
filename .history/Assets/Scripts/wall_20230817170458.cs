@@ -26,7 +26,7 @@ public class wall : MonoBehaviour
         var projectiles = GameObject.FindGameObjectsWithTag("projectile");
         foreach(var projectile in projectiles)
         {
-            Destroy(projectile);
+            Destroy(pro)
         }
     }
 }

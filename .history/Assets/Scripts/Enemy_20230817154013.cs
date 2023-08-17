@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     {
         //set it's rotation to 90 on the x axis and set it's y position to 5
         gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
+      
         //if hp is less than or equal to 0
         if (hp <= 0)
         {
@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour
             {
                 //set the destination of the agent to the target position
                 agent.SetDestination(target.transform.position);
-            }
+        }
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
     }
     private void OnCollisionEnter(Collision collision)
     {

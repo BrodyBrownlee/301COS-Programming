@@ -21,9 +21,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //set it's rotation to 90 on the x axis and set it's y position to 5
-        gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 5, gameObject.transform.position.z);
         //if hp is less than or equal to 0
         if (hp <= 0)
         {

@@ -557,7 +557,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: bef813140a1f69b4cab25e83ef8e1bc9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4cd3f903318c93b4f81dd2f876151b16, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &6270225235068419712
 GameObject:
@@ -797,9 +797,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.6, y: 0.5, z: 0.6}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
