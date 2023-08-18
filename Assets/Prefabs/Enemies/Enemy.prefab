@@ -135,10 +135,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 4301168360677136072}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
-  m_Speed: 50
-  m_Acceleration: 50
-  avoidancePriority: 99
+  m_Radius: 0.4
+  m_Speed: 30
+  m_Acceleration: 30
+  avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
@@ -147,7 +147,7 @@ NavMeshAgent:
   m_Height: 0.1
   m_BaseOffset: 0
   m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!54 &7471354497369718434
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,6 +172,6 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
