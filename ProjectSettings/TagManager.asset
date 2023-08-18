@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - projectile
   - door
+  - blockingDoors
+  - enemySpawn
   layers:
   - Default
   - TransparentFX

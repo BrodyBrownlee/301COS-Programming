@@ -37,6 +37,7 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        roomClear = true;
         //setting up the values for the rooms 
         try
         {

@@ -14,14 +14,12 @@ public class enemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //spawn an enemy on the enemySpawn position;
-        enemyLoc = GameObject.Find("enemySpawn");
-        eSpawn();
     }
     private void Awake()
     {
         //creates an instance of the script which can be called in other classes
         spawnerScript = this;
+        eSpawn();
     }
     // Update is called once per frame
     void Update()
@@ -38,10 +36,12 @@ public class enemySpawn : MonoBehaviour
     }
     private void eSpawn()
     {
-        //spawn an enemy on the enemyLoc object and add one to the number of enemies
-        Debug.Log("Spawned!");
-        GameObject newEnemy = Instantiate(pfEnemy);
-        numberOfEnemies++;
-        newEnemy.transform.position = enemyLoc.transform.position;
+        var enemyLocation = GameObject.FindGameObjectsWithTag("enemySpawn");
+        foreach(var enemySpawn in enemyLocation)
+        {
+            GameObject newEnemy = Instantiate(pfEnemy);
+            newEnemy.transform.position = enemySpawn.transform.position;
+            numberOfEnemies++;
+        }
     }
 }
