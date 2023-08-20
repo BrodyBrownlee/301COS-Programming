@@ -28,5 +28,10 @@ public class wall : MonoBehaviour
         {
             Destroy(projectile);
         }
+        var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
+        foreach(var enemy in enemySpawns)
+        {
+            Destroy(enemy);
+        }
     }
 }
