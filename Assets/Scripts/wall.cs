@@ -4,34 +4,15 @@ using UnityEngine;
 
 public class wall : MonoBehaviour
 {
-    public static wall wallScript;
     // Start is called before the first frame update
    
-    private void Awake()
-    {
-        wallScript = this;
-    }
+
     public void Update()
     {
       
     }
-    public void roomChange()
+    public void deleteWalls()
     {
-       Debug.Log("wall destroyed");
-       var walls = GameObject.FindGameObjectsWithTag("blockingDoors");
-        foreach(var wall in walls)
-        {
-            Destroy(wall);
-        }
-        var projectiles = GameObject.FindGameObjectsWithTag("projectile");
-        foreach(var projectile in projectiles)
-        {
-            Destroy(projectile);
-        }
-        var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
-        foreach(var enemy in enemySpawns)
-        {
-            Destroy(enemy);
-        }
+        Destroy(gameObject);
     }
 }

@@ -44,13 +44,9 @@ public class Player_Movement : MonoBehaviour
     {
         if(other.tag == "trigger")
         {
-            if (room.roomScript != null && wall.wallScript != null)
+            if (GameController.gameController != null)
             {
-                Debug.Log("room changed");
-                room.roomScript.roomChange();
-                //calling the roomChange method for the wall class
-                Debug.Log("walls changed");
-                wall.wallScript.roomChange();
+                GameController.gameController.roomChange();
             }
             Cr.enabled = false;
             switch (other.name){

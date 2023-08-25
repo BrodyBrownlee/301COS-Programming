@@ -72,16 +72,6 @@ public class roomSpawn : MonoBehaviour
         {
             Debug.Log(e);
         }
-
-        /*   Debug.Log($"{roomArray[0,0].ToString()}{roomArray[0, 1].ToString()}{roomArray[0, 2].ToString()}{roomArray[0, 3].ToString()}");
-           Debug.Log($"{roomArray[1, 0].ToString()}{roomArray[1, 1].ToString()}{roomArray[1, 2].ToString()}{roomArray[1, 3].ToString()}");
-           Debug.Log($"{roomArray[2, 0].ToString()}{roomArray[2, 1].ToString()}{roomArray[2, 2].ToString()}{roomArray[2, 3].ToString()}");
-           Debug.Log($"{roomArray[3, 0].ToString()}{roomArray[3, 1].ToString()}{roomArray[3, 2].ToString()}{roomArray[3, 3].ToString()}");
-           Debug.Log($"{roomArray[4, 0].ToString()}{roomArray[4, 1].ToString()}{roomArray[4, 2].ToString()}{roomArray[4, 3].ToString()}");
-           Debug.Log($"{roomArray[5, 0].ToString()}{roomArray[5, 1].ToString()}{roomArray[5, 2].ToString()}{roomArray[5, 3].ToString()}");
-       */
-
-        //finds game object for room location
         //setting player coordinates to the start room location
         for (int i = 0; i < floorHeight; i++)
         {
@@ -95,7 +85,6 @@ public class roomSpawn : MonoBehaviour
                 }
             }
         }
-
         //finds game object for room location 
         roomLoc = GameObject.Find("roomOrigin(1,1)");
         if (Player_Movement.playerScript != null)
@@ -127,25 +116,19 @@ public class roomSpawn : MonoBehaviour
             }
         }
         //if room isn't clear
-        if (!roomClear)
+        if (!roomClear && !doorsSpawned)
         {
-            if (!doorsSpawned)
-            {
                 doorSpawn();
                 doorsSpawned = true;
                 triggerSpawned = false;
-            }
         }
         //if triggers haven't been spawned
         //if room is clear
-        if (roomClear)
+        if (roomClear && !triggerSpawned)
         {
-            if (!triggerSpawned)
-            {
                 spawnTriggers();
                 triggerSpawned = true;
                 doorsSpawned = false;
-            }
         }
     }
     //spawning the room based on the prefab selected
@@ -206,71 +189,125 @@ public class roomSpawn : MonoBehaviour
     //spawning triggers
     private void spawnTriggers()
     {
-        //spawning and translating the top trigger
-        GameObject topTrigger = Instantiate(pfTrigger);
-        topTrigger.name = "topTrigger";
-        topTrigger.transform.position = new Vector3(0, 2, 75);
-        topTrigger.transform.localScale = new Vector3(20, 10, 9);
-        topTrigger.transform.Rotate(180, 0, 0);
-        //spawning and translating the bottom trigger
-        GameObject bottomTrigger = Instantiate(pfTrigger);
-        bottomTrigger.name = "bottomTrigger";
-        bottomTrigger.transform.position = new Vector3(0, 2, -75);
-        bottomTrigger.transform.localScale = new Vector3(20, 10, 9);
-        bottomTrigger.transform.Rotate(180, 0, 0);
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] != 0)
+        {
+            leftTriggerSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX + 1] != 0)
+        {
+            rightTriggerSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY - 1, Player_Movement.playerScript.playerX] != 0)
+        {
+            topTriggerSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY + 1, Player_Movement.playerScript.playerX] != 0)
+        {
+            bottomTriggerSpawn();
+        }
+    }
+    public void doorSpawn()
+    {
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] != 0)
+        {
+            leftDoorSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX + 1] != 0)
+        {
+            rightDoorSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY - 1, Player_Movement.playerScript.playerX] != 0)
+        {
+            topDoorSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY + 1, Player_Movement.playerScript.playerX] != 0)
+        {
+            bottomDoorSpawn();
+        }
+    }
+    public void wallSpawn()
+    {
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] == 0)
+        {
+            leftWallSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX + 1] == 0)
+        {
+            rightWallSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY - 1, Player_Movement.playerScript.playerX] == 0)
+        {
+            topWallSpawn();
+        }
+        if (roomArray[Player_Movement.playerScript.playerY + 1, Player_Movement.playerScript.playerX] == 0)
+        {
+            bottomWallSpawn();
+        }
+    }
+    public void leftDoorSpawn()
+    {
+        //spawning and translating the left door
+        GameObject leftDoor = Instantiate(pfDoor);
+        leftDoor.transform.position = new Vector3(-75, 2, 0);
+        leftDoor.transform.localScale = new Vector3(10, 10, 20);
+    }
+    public void rightDoorSpawn()
+    {
+        //spawning and translating the right door
+        GameObject rightDoor = Instantiate(pfDoor);
+        rightDoor.transform.position = new Vector3(75, 2, 0);
+        rightDoor.transform.localScale = new Vector3(10, 10, 20);
+    }
+    public void topDoorSpawn()
+    {
+        //spawning and translating the top door
+        GameObject topDoor = Instantiate(pfDoor);
+        topDoor.transform.position = new Vector3(0, 2, 75);
+        topDoor.transform.localScale = new Vector3(20, 10, 10);
+        topDoor.transform.Rotate(180, 0, 0);
+    }
+    public void bottomDoorSpawn()
+    {
+        //spawning and translating the bottom door
+        GameObject bottomDoor = Instantiate(pfDoor);
+        bottomDoor.transform.position = new Vector3(0, 2, -75);
+        bottomDoor.transform.localScale = new Vector3(20, 10, 10);
+        bottomDoor.transform.Rotate(180, 0, 0);
+    }
+    public void leftTriggerSpawn()
+    {
         //spawning and translating the left trigger
         GameObject leftTrigger = Instantiate(pfTrigger);
         leftTrigger.name = "leftTrigger";
         leftTrigger.transform.position = new Vector3(-75, 2, 0);
         leftTrigger.transform.localScale = new Vector3(9, 10, 20);
+    }
+    public void rightTriggerSpawn()
+    {
         //spawning and translating the right trigger
         GameObject rightTrigger = Instantiate(pfTrigger);
         rightTrigger.name = "rightTrigger";
         rightTrigger.transform.position = new Vector3(75, 2, 0);
         rightTrigger.transform.localScale = new Vector3(9, 10, 20);
         //return to stop multiple triggers spawning
-        return;
     }
-    public void doorSpawn()
+    public void topTriggerSpawn()
     {
-        //spawning and translating the left door
-        GameObject leftDoor = Instantiate(pfDoor);
-        leftDoor.transform.position = new Vector3(-75, 2, 0);
-        leftDoor.transform.localScale = new Vector3(10, 10, 20);
-        //spawning and translating the right door
-        GameObject rightDoor = Instantiate(pfDoor);
-        rightDoor.transform.position = new Vector3(75, 2, 0);
-        rightDoor.transform.localScale = new Vector3(10, 10, 20);
-        //spawning and translating the top door
-        GameObject topDoor = Instantiate(pfDoor);
-        topDoor.transform.position = new Vector3(0, 2, 75);
-        topDoor.transform.localScale = new Vector3(20, 10, 10);
-        topDoor.transform.Rotate(180, 0, 0);
-        //spawning and translating the bottom door
-        GameObject bottomDoor = Instantiate(pfDoor);
-        bottomDoor.transform.position = new Vector3(0, 2, -75);
-        bottomDoor.transform.localScale = new Vector3(20, 10, 10);
-        bottomDoor.transform.Rotate(180, 0, 0);
-        return;
+        //spawning and translating the top trigger
+        GameObject topTrigger = Instantiate(pfTrigger);
+        topTrigger.name = "topTrigger";
+        topTrigger.transform.position = new Vector3(0, 2, 75);
+        topTrigger.transform.localScale = new Vector3(20, 10, 9);
+        topTrigger.transform.Rotate(180, 0, 0);
     }
-    public void wallSpawn()
+    public void bottomTriggerSpawn()
     {
-        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] == 0)
-        {
-          leftWallSpawn();
-        }
-        if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX + 1] == 0 )
-        {
-            rightWallSpawn();
-        }
-        if (roomArray[Player_Movement.playerScript.playerY - 1, Player_Movement.playerScript.playerX] == 0 )
-        {
-            topWallSpawn();
-        }
-        if (roomArray[Player_Movement.playerScript.playerY + 1, Player_Movement.playerScript.playerX] == 0 )
-        {
-            bottomWallSpawn();
-        }
+        //spawning and translating the bottom trigger
+        GameObject bottomTrigger = Instantiate(pfTrigger);
+        bottomTrigger.name = "bottomTrigger";
+        bottomTrigger.transform.position = new Vector3(0, 2, -75);
+        bottomTrigger.transform.localScale = new Vector3(20, 10, 9);
+        bottomTrigger.transform.Rotate(180, 0, 0);
     }
     public void leftWallSpawn()
     {

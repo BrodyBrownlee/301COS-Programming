@@ -22,8 +22,6 @@ public class room : MonoBehaviour
     }
     public void roomChange()
     {
-        Debug.Log("room destroyed");
-
         roomChanged = true;
         Destroy(gameObject);
         return;
