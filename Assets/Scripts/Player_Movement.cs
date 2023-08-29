@@ -44,10 +44,9 @@ public class Player_Movement : MonoBehaviour
     {
         if(other.tag == "trigger")
         {
-            if (GameController.gameController != null)
-            {
+
                 GameController.gameController.roomChange();
-            }
+            
             Cr.enabled = false;
             switch (other.name){
 

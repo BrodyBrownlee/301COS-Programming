@@ -16,6 +16,7 @@ public class enemySpawn : MonoBehaviour
     {
         //creates an instance of the script which can be called in other classes
         spawnerScript = this;
+        eSpawn();
         
     }
     // Update is called once per frame
@@ -36,12 +37,24 @@ public class enemySpawn : MonoBehaviour
     public void eSpawn()
     {
         //spawns enemies based on the spawn locations of the enemySpawns in the room Prefabs
-            var enemyLocation = GameObject.FindGameObjectsWithTag("enemySpawn");
-            foreach (var enemySpawn in enemyLocation)
-            {
-                GameObject newEnemy = Instantiate(pfEnemy);
-                newEnemy.transform.position = enemySpawn.transform.position;
-                numberOfEnemies++;
-            }
+        var enemies = GameObject.FindGameObjectsWithTag("enemySpawn");
+        foreach (var enemySpawn in enemies)
+        {
+            GameObject newEnemy = Instantiate(pfEnemy);
+            newEnemy.transform.position = enemySpawn.transform.position;
+            numberOfEnemies++;
+        }
+
+        //deactivates spawn points from previous rooms
+        DeactivateEnemySpawnPoints();
+    }
+    void DeactivateEnemySpawnPoints()
+    {
+        // Deactivate all enemy spawn points
+        var allSpawnPoints = GameObject.FindGameObjectsWithTag("enemySpawn");
+        foreach (var spawnPoint in allSpawnPoints)
+        {
+            spawnPoint.SetActive(false);
+        }
     }
 }

@@ -187,7 +187,7 @@ public class roomSpawn : MonoBehaviour
         wallSpawn();
     }
     //spawning triggers
-    private void spawnTriggers()
+    public void spawnTriggers()
     {
         if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] != 0)
         {

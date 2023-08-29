@@ -22,6 +22,11 @@ public class GameController : MonoBehaviour
     }
     public void roomChange()
     {
+        var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
+        foreach (var enemy in enemySpawns)
+        {
+            Destroy(enemy);
+        }
         Debug.Log("wall destroyed");
         var walls = GameObject.FindGameObjectsWithTag("blockingDoors");
         foreach (var wall in walls)
@@ -34,10 +39,6 @@ public class GameController : MonoBehaviour
             Destroy(projectile);
         }
         room.roomScript.roomChange();
-        var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
-        foreach (var enemy in enemySpawns)
-        {
-            Destroy(enemy);
-        }
+        return;
     }
 }
