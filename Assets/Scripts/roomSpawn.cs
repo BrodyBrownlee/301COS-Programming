@@ -123,7 +123,10 @@ public class roomSpawn : MonoBehaviour
             else
             {
                 var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
-                clearedRooms.Add(roomCoordinates);
+                if(!clearedRooms.Contains(roomCoordinates))
+                {
+                    clearedRooms.Add(roomCoordinates);
+                }
                 //if no enemies
                 roomClear = true;
             }
@@ -151,13 +154,8 @@ public class roomSpawn : MonoBehaviour
         var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
         if (clearedRooms.Contains(roomCoordinates))
         {
-            spawnTriggers();
+           /* triggerSpawned = false;*/
         }
-     /*   if (enemySpawn.spawnerScript != null && enemySpawn.spawnerScript.IsRoomCleared(currentRoomCoordinates))
-        {
-            enemySpawn.spawnerScript.SetRoomUncleared(currentRoomCoordinates);
-        }*/
-
         if (enemySpawn.spawnerScript != null)
         {
             enemySpawn.spawnerScript.DeactivateEnemySpawnPoints();

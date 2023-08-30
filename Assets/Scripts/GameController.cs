@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(trigger);
         }
+        roomSpawn.roomScript.triggerSpawned = false;
         room.roomScript.roomChange();
     }
 }
