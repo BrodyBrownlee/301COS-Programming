@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 197831338}
   - component: {fileID: 197831337}
   - component: {fileID: 197831339}
-  - component: {fileID: 197831340}
   - component: {fileID: 197831341}
+  - component: {fileID: 197831340}
+  - component: {fileID: 197831342}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -270,6 +271,21 @@ MonoBehaviour:
   pfBullet: {fileID: 2834028672987132116, guid: cb223a4e883849040ba88d449ac5fd92, type: 3}
   shootDelay: 1
   timer: 0
+--- !u!114 &197831342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197831336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0604fcb2c6c1e274b8b8a0057109581c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 3
+  hitDelay: 0
+  invincibilityTime: 1
 --- !u!1 &349063696
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +467,7 @@ MonoBehaviour:
   roomClear: 0
   triggerSpawned: 0
   roomValue: 0
+  clearedRooms: []
 --- !u!4 &926419626
 Transform:
   m_ObjectHideFlags: 0
@@ -587,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967ca531a34c41340adfe8eb19a571be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEnd: 0
 --- !u!4 &1657212245
 Transform:
   m_ObjectHideFlags: 0

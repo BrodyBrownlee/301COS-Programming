@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController gameController;
+    public bool gameEnd = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Player_HP.playerHPScript.HP <= 0 && !gameEnd)
+        {
+            gameOver();
+            gameEnd = true;
+        }
+    }
+    public void gameOver()
+    {
+        Debug.Log("Game Over");
     }
     public void roomChange()
     {
