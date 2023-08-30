@@ -38,7 +38,12 @@ public class GameController : MonoBehaviour
         {
             Destroy(projectile);
         }
+
+        var triggers = GameObject.FindGameObjectsWithTag("trigger");
+        foreach(var trigger in triggers )
+        {
+            Destroy(trigger);
+        }
         room.roomScript.roomChange();
-        return;
     }
 }

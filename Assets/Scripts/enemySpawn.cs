@@ -12,6 +12,7 @@ public class enemySpawn : MonoBehaviour
     public bool enemiesSpawned;
     public float numberOfEnemies = 0;//current enemy number
     public float maxNumEnemies = 10;//maximum number of enemies able to be spawned with right bracket
+
     private void Awake()
     {
         //creates an instance of the script which can be called in other classes
@@ -36,19 +37,22 @@ public class enemySpawn : MonoBehaviour
     }
     public void eSpawn()
     {
-        //spawns enemies based on the spawn locations of the enemySpawns in the room Prefabs
-        var enemies = GameObject.FindGameObjectsWithTag("enemySpawn");
-        foreach (var enemySpawn in enemies)
+        var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
+        if (roomSpawn.roomScript.clearedRooms.Contains(roomCoordinates)) return;
+        else
         {
-            GameObject newEnemy = Instantiate(pfEnemy);
-            newEnemy.transform.position = enemySpawn.transform.position;
-            numberOfEnemies++;
+            //finds all enemy spawn locations with the tags
+            var enemies = GameObject.FindGameObjectsWithTag("enemySpawn");
+            foreach (var enemySpawn in enemies)
+            {
+                GameObject newEnemy = Instantiate(pfEnemy);
+                newEnemy.transform.position = enemySpawn.transform.position;
+                numberOfEnemies++;
+            }
+            DeactivateEnemySpawnPoints();
         }
-
-        //deactivates spawn points from previous rooms
-        DeactivateEnemySpawnPoints();
     }
-    void DeactivateEnemySpawnPoints()
+    public void DeactivateEnemySpawnPoints()
     {
         // Deactivate all enemy spawn points
         var allSpawnPoints = GameObject.FindGameObjectsWithTag("enemySpawn");

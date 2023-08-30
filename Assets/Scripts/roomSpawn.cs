@@ -9,6 +9,7 @@ public class roomSpawn : MonoBehaviour
     //allows for calling of variables in other classes
     public static roomSpawn roomScript;
 
+    //list of prefabs for rooms
     public GameObject startRoom;
     public GameObject treasureRoom;
     public GameObject bossRoom;
@@ -21,23 +22,33 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfDoor;
     public GameObject pfTrigger;
     public GameObject pfWall;
+
+
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     public int[,] roomArray;
+
     //list for the cleared rooms
     public List<int> roomList;
+
     //bool for events on room clear and spawning of doors and triggers
     public bool doorsSpawned;
     public bool roomClear;
     public bool triggerSpawned;
     public float roomValue;
     private GameObject roomLoc;
+
     //floor width and height
     int floorWidth;
     int floorHeight;
+
+    public List<Vector2Int> clearedRooms = new List<Vector2Int>();
+
     // Start is called before the first frame update
     void Start()
     {
-        roomClear = true;
+     
+
+         roomClear = true;
         //setting up the values for the rooms 
         try
         {
@@ -111,6 +122,8 @@ public class roomSpawn : MonoBehaviour
             }
             else
             {
+                var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
+                clearedRooms.Add(roomCoordinates);
                 //if no enemies
                 roomClear = true;
             }
@@ -130,10 +143,26 @@ public class roomSpawn : MonoBehaviour
                 triggerSpawned = true;
                 doorsSpawned = false;
         }
+      
     }
     //spawning the room based on the prefab selected
     public void rSpawn()
     {
+        var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
+        if (clearedRooms.Contains(roomCoordinates))
+        {
+            spawnTriggers();
+        }
+     /*   if (enemySpawn.spawnerScript != null && enemySpawn.spawnerScript.IsRoomCleared(currentRoomCoordinates))
+        {
+            enemySpawn.spawnerScript.SetRoomUncleared(currentRoomCoordinates);
+        }*/
+
+        if (enemySpawn.spawnerScript != null)
+        {
+            enemySpawn.spawnerScript.DeactivateEnemySpawnPoints();
+        }
+
         //finding which room should be spawned based on the values set in the array
         if (roomValue == 1)
         {
