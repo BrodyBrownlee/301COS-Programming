@@ -19,10 +19,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player_HP.playerHPScript.HP <= 0 && !gameEnd)
+        if (Player_HP.playerHPScript != null)
         {
-            gameOver();
-            gameEnd = true;
+        if (Player_HP.playerHPScript.HP <= 0 && !gameEnd)
+            {
+                gameOver();
+                gameEnd = true;
+            }
         }
     }
     public void gameOver()
