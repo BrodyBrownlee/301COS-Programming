@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameController : MonoBehaviour
 {
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
     }
     public void roomChange()
     {
+        roomTransistion();
         var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
         foreach (var enemy in enemySpawns)
         {
@@ -58,5 +61,22 @@ public class GameController : MonoBehaviour
         }
         roomSpawn.roomScript.triggerSpawned = false;
         room.roomScript.roomChange();
+    }
+    IEnumerator roomTransistion()
+    {
+        float timeElapsed = 0;
+        float lerpDuration = 1f;
+        float transparency;
+        Color32 colour;
+        GameObject image = GameObject.Find("Image");
+        while (timeElapsed < lerpDuration)
+        {
+            transparency = Mathf.Lerp(255, 0, timeElapsed / lerpDuration);
+            colour = new Color32(0, 0, 0, (byte)transparency);
+            image.GetComponent<Image>().color = colour;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        yield break;
     }
 }
