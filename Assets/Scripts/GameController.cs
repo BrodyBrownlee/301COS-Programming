@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController gameController;
     public bool gameEnd = false;
+    bool roomTransistioning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
     }
     public void roomChange()
     {
-        roomTransistion();
+        StartCoroutine(roomTransistion());
         var enemySpawns = GameObject.FindGameObjectsWithTag("enemySpawn");
         foreach (var enemy in enemySpawns)
         {
@@ -64,19 +65,28 @@ public class GameController : MonoBehaviour
     }
     IEnumerator roomTransistion()
     {
-        float timeElapsed = 0;
-        float lerpDuration = 1f;
-        float transparency;
-        Color32 colour;
-        GameObject image = GameObject.Find("Image");
-        while (timeElapsed < lerpDuration)
+        if(!roomTransistioning)
         {
-            transparency = Mathf.Lerp(255, 0, timeElapsed / lerpDuration);
-            colour = new Color32(0, 0, 0, (byte)transparency);
+            roomTransistioning = true;
+            float timeElapsed = 0;
+            float lerpDuration = 2f;
+            float transparency;
+            Color32 colour;
+            GameObject image = GameObject.Find("Image");
+            colour = new Color32(0, 0, 0, 255);
             image.GetComponent<Image>().color = colour;
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        yield break;
+            while (timeElapsed < lerpDuration)
+            {
+                transparency = Mathf.Lerp(255, 0, timeElapsed / lerpDuration);
+                colour = new Color32(0, 0, 0, (byte)transparency);
+                image.GetComponent<Image>().color = colour;
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            colour = new Color32(0, 0, 0, 0);
+            image.GetComponent<Image>().color = colour;
+            roomTransistioning = false;
+            yield break;
+        } 
     }
 }

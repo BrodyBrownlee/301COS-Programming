@@ -46,9 +46,6 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
-
-         roomClear = true;
         //setting up the values for the rooms 
         try
         {
@@ -110,6 +107,8 @@ public class roomSpawn : MonoBehaviour
     {
         //creates an instance of the class to allow calling of variables from other classes
         roomScript = this;
+        roomClear = true;
+        doorsSpawned = false;
     }
     void Update()
     {
@@ -129,6 +128,7 @@ public class roomSpawn : MonoBehaviour
                 }
                 //if no enemies
                 roomClear = true;
+                doorsSpawned = false;
             }
         }
         //if room isn't clear
