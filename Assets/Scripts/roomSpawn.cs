@@ -43,6 +43,8 @@ public class roomSpawn : MonoBehaviour
     //floor width and height
     int floorWidth;
     int floorHeight;
+    //start room
+    Vector2Int startingRoom;
 
     public List<Vector2Int> clearedRooms = new List<Vector2Int>();
 
@@ -386,6 +388,10 @@ public class roomSpawn : MonoBehaviour
         {
             for (int h = 0; h < floorWidth; h++)
             {
+                if (roomArray[i, h] == 1)
+                {
+                     startRoom = new Vector2Int(i, h);
+                }
                 GameObject miniMapRoom = Instantiate(roomType(i, h));
                 miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 50 - i * 6); // Calculate position based on i and h
             }
@@ -393,13 +399,17 @@ public class roomSpawn : MonoBehaviour
     }
     private GameObject roomType(int row, int col)
     {
+        
         if (Player_Movement.playerScript != null)
         {
             var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
-            if (roomCoordinates == new Vector2Int(col + 1, row + 1) && roomCoordinates != new Vector2Int(0,0))
+            
+            if (roomCoordinates == new Vector2Int( , ) && roomCoordinates != new Vector2Int(0,0))
             {
                 return pfCurrentRoom;
             }
+
+
         }
         if (roomArray[row, col] == 3)
         {
