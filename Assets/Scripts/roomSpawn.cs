@@ -8,7 +8,6 @@ public class roomSpawn : MonoBehaviour
 {
     //allows for calling of variables in other classes
     public static roomSpawn roomScript;
-
     //list of prefabs for rooms
     public GameObject startRoom;
     public GameObject treasureRoom;
@@ -17,12 +16,10 @@ public class roomSpawn : MonoBehaviour
     public GameObject basicRoom_2;
     public GameObject basicRoom_3;
     public GameObject basicRoom_4;
-
     //creates prefabs for spawnable doors, triggers and walls for the rooms
     public GameObject pfDoor;
     public GameObject pfTrigger;
     public GameObject pfWall;
-
     //prefabs for miniMap
     public GameObject pfRegularRoom;
     public GameObject pfTreasureRoom;
@@ -377,8 +374,14 @@ public class roomSpawn : MonoBehaviour
         bottomWall.transform.localScale = new Vector3(20, 10, 10);
         bottomWall.transform.Rotate(180, 0, 0);
     }
-    private void drawMiniMap()
+    public void drawMiniMap()
     {
+        var miniMapIcons = GameObject.FindGameObjectsWithTag("miniMap");
+        foreach (var miniMapIcon in miniMapIcons)
+        {
+            Destroy(miniMapIcon);
+        }
+
         for (int i = 0; i < floorHeight; i++)
         {
             for (int h = 0; h < floorWidth; h++)
@@ -390,6 +393,14 @@ public class roomSpawn : MonoBehaviour
     }
     private GameObject roomType(int row, int col)
     {
+        if (Player_Movement.playerScript != null)
+        {
+            var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
+            if (roomCoordinates == new Vector2Int(col + 1, row + 1) && roomCoordinates != new Vector2Int(0,0))
+            {
+                return pfCurrentRoom;
+            }
+        }
         if (roomArray[row, col] == 3)
         {
             return pfBossRoom;
