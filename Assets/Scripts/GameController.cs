@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
         {
             roomTransistioning = true;
             float timeElapsed = 0;
-            float lerpDuration = 2f;
+            float lerpDuration = 1f;
             float transparency;
             Color32 colour;
             GameObject image = GameObject.Find("Image");
