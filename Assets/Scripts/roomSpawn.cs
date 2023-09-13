@@ -23,6 +23,11 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfTrigger;
     public GameObject pfWall;
 
+    //prefabs for miniMap
+    public GameObject pfRegularRoom;
+    public GameObject pfTreasureRoom;
+    public GameObject pfBossRoom;
+    public GameObject pfCurrentRoom;
 
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     public int[,] roomArray;
@@ -373,30 +378,26 @@ public class roomSpawn : MonoBehaviour
     }
     private void drawMiniMap()
     {
-
         for (int i = 0; i < floorHeight; i++)
         {
-            //loop for the floor width
             for (int h = 0; h < floorWidth; h++)
             {
-                if (roomArray[i,h] > 3)
-                {
-
-                }
-                else if (roomArray[i,h] == 3)
-                {
-
-                }
-                else if (roomArray[i, h] == 2)
-                {
-
-                }
-                else if (roomArray[i, h] == 1)
-                {
-
-                }
+                GameObject miniMapRoom = Instantiate(roomType(i, h));
+                miniMapRoom.transform.position = new Vector3(95 + h * 10, 0, 50 - i * 10); // Calculate position based on indices
             }
         }
+    }
+    private GameObject roomType(int rowIndex, int colIndex)
+    {
+        if (roomArray[rowIndex, colIndex] == 3)
+        {
+            return pfBossRoom;
+        }
+        else if (roomArray[rowIndex, colIndex] == 2)
+        {
+            return pfTreasureRoom;
+        }
+        return pfRegularRoom; // Default return value
     }
 }
 

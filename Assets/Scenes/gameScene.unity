@@ -532,6 +532,10 @@ MonoBehaviour:
   pfDoor: {fileID: 5351814756868877083, guid: 16c27b6da3f75e641bf793529f033c51, type: 3}
   pfTrigger: {fileID: 8229367459267779540, guid: c1239118339fe36428508e18d2f6c417, type: 3}
   pfWall: {fileID: 5351814756868877083, guid: 70741a54dc9d00947b5ba0927db0c7bc, type: 3}
+  pfRegularRoom: {fileID: 7770300726637281597, guid: b8cc453249e0a2d4fa549204e4b4e3fb, type: 3}
+  pfTreasureRoom: {fileID: 5188581203571395910, guid: bc66166ec5df11f489221e3f8724abcd, type: 3}
+  pfBossRoom: {fileID: 7269889938271745390, guid: 34d0b1ae243107c44a3c7d97b1d90335, type: 3}
+  pfCurrentRoom: {fileID: 242321294592399327, guid: be600afb3cffdff4cb7d174bf0c33480, type: 3}
   roomList: 
   doorsSpawned: 0
   roomClear: 0
