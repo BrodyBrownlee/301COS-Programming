@@ -11,6 +11,8 @@ TagManager:
   - blockingDoors
   - enemySpawn
   - trigger
+  - hp
+  - miniMap
   layers:
   - Default
   - TransparentFX

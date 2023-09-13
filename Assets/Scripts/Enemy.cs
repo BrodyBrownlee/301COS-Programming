@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-
     public float hp = 3;
     public float moveSpeed;
     public float attackRange;

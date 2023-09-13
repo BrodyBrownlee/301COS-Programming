@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameController : MonoBehaviour
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
     }
     public void gameOver()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);//loads the main menu
         Debug.Log("Game Over");
     }
     public void roomChange()

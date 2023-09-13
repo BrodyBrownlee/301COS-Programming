@@ -6,19 +6,9 @@ public class room : MonoBehaviour
 {
     public static room roomScript;
     public bool roomChanged;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     private void Awake()
     {
         roomScript = this;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void roomChange()
     {

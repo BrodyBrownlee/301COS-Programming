@@ -105,6 +105,7 @@ public class roomSpawn : MonoBehaviour
     //calls the instance the script is 
     void Awake()
     {
+        drawMiniMap();
         //creates an instance of the class to allow calling of variables from other classes
         roomScript = this;
         roomClear = true;
@@ -369,6 +370,33 @@ public class roomSpawn : MonoBehaviour
         bottomWall.transform.position = new Vector3(0, 2, -75);
         bottomWall.transform.localScale = new Vector3(20, 10, 10);
         bottomWall.transform.Rotate(180, 0, 0);
+    }
+    private void drawMiniMap()
+    {
+
+        for (int i = 0; i < floorHeight; i++)
+        {
+            //loop for the floor width
+            for (int h = 0; h < floorWidth; h++)
+            {
+                if (roomArray[i,h] > 3)
+                {
+
+                }
+                else if (roomArray[i,h] == 3)
+                {
+
+                }
+                else if (roomArray[i, h] == 2)
+                {
+
+                }
+                else if (roomArray[i, h] == 1)
+                {
+
+                }
+            }
+        }
     }
 }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -283,7 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0604fcb2c6c1e274b8b8a0057109581c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpPrefab: {fileID: 7289757331002081470, guid: 6df1f79be1c56e94cb70f2bbd4f3d020, type: 3}
   HP: 3
+  MaxHP: 3
   hitDelay: 0
   invincibilityTime: 1
 --- !u!1 &349063696
