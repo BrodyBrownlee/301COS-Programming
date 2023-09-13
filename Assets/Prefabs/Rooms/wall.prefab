@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6087622689153756620}
   - component: {fileID: 8729305411233341612}
   - component: {fileID: -5866096278198213739}
-  - component: {fileID: 3871756663213809561}
   m_Layer: 0
   m_Name: wall
   m_TagString: blockingDoors
@@ -123,15 +122,3 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &3871756663213809561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351814756868877083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b892e84c488484c8ebe2475a7927f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

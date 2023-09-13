@@ -28,6 +28,7 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfTreasureRoom;
     public GameObject pfBossRoom;
     public GameObject pfCurrentRoom;
+    public GameObject pfBlankRoom;
 
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     public int[,] roomArray;
@@ -80,6 +81,7 @@ public class roomSpawn : MonoBehaviour
                     }
                 }
             }
+            drawMiniMap();
         }
         catch (Exception e)
         {
@@ -110,7 +112,6 @@ public class roomSpawn : MonoBehaviour
     //calls the instance the script is 
     void Awake()
     {
-        drawMiniMap();
         //creates an instance of the class to allow calling of variables from other classes
         roomScript = this;
         roomClear = true;
@@ -383,21 +384,24 @@ public class roomSpawn : MonoBehaviour
             for (int h = 0; h < floorWidth; h++)
             {
                 GameObject miniMapRoom = Instantiate(roomType(i, h));
-                miniMapRoom.transform.position = new Vector3(95 + h * 10, 0, 50 - i * 10); // Calculate position based on indices
+                miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 50 - i * 6); // Calculate position based on i and h
             }
         }
     }
-    private GameObject roomType(int rowIndex, int colIndex)
+    private GameObject roomType(int row, int col)
     {
-        if (roomArray[rowIndex, colIndex] == 3)
+        if (roomArray[row, col] == 3)
         {
             return pfBossRoom;
         }
-        else if (roomArray[rowIndex, colIndex] == 2)
+        else if (roomArray[row, col] == 2)
         {
             return pfTreasureRoom;
+        }
+        if(roomArray[row, col] == 0)
+        {
+            return pfBlankRoom;
         }
         return pfRegularRoom; // Default return value
     }
 }
-

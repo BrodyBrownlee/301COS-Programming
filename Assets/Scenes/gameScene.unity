@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -536,6 +536,7 @@ MonoBehaviour:
   pfTreasureRoom: {fileID: 5188581203571395910, guid: bc66166ec5df11f489221e3f8724abcd, type: 3}
   pfBossRoom: {fileID: 7269889938271745390, guid: 34d0b1ae243107c44a3c7d97b1d90335, type: 3}
   pfCurrentRoom: {fileID: 242321294592399327, guid: be600afb3cffdff4cb7d174bf0c33480, type: 3}
+  pfBlankRoom: {fileID: 6238647713670062607, guid: d801f75168b30a246a03670df0b55266, type: 3}
   roomList: 
   doorsSpawned: 0
   roomClear: 0
