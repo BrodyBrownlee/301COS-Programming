@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfBullet: {fileID: 2834028672987132116, guid: cb223a4e883849040ba88d449ac5fd92, type: 3}
-  shootDelay: 0.01
+  shootDelay: 0.7
   timer: 0
 --- !u!114 &197831342
 MonoBehaviour:
