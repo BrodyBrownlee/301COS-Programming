@@ -42,11 +42,8 @@ public class Player_Movement : MonoBehaviour
     //player collision with triggers
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "trigger")
-        {
-
-                GameController.gameController.roomChange();
-            
+        if (other.tag == "trigger")
+        { 
             Cr.enabled = false;
             switch (other.name){
 
@@ -79,6 +76,7 @@ public class Player_Movement : MonoBehaviour
                     Cr.transform.position = new Vector3(Cr.transform.position.x, 5, 65);
                     break;
             }
+            GameController.gameController.roomChange();
             Cr.enabled = true;
             //calls the room has been changed
             if (roomSpawn.roomScript != null)

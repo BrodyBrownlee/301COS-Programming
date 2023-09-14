@@ -399,7 +399,7 @@ public class roomSpawn : MonoBehaviour
                    
                 }
                 GameObject miniMapRoom = Instantiate(roomType(i, h));
-                miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 50 - i * 6); // Calculate position based on i and h
+                miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 70 - i * 6); // Calculate position based on i and h
             }
         }
     }
@@ -412,7 +412,7 @@ public class roomSpawn : MonoBehaviour
             return pfCurrentRoom;
         }
 
-        if (new Vector2Int(Player_Movement.playerScript.playerY + 1,Player_Movement.playerScript.playerX + 1) == new Vector2Int(row,col) && roomArray[row,col] != 0) 
+        if (Player_Movement.playerScript.playerX == col && Player_Movement.playerScript.playerY == row && roomArray[row,col] != 0) 
         {
             return pfCurrentRoom;
         }
@@ -424,11 +424,11 @@ public class roomSpawn : MonoBehaviour
         {
             return pfTreasureRoom;
         }
-
         if(roomArray[row, col] == 0)
         {
             return pfBlankRoom;
         }
+
         return pfRegularRoom; // Default return value
     }
 }
