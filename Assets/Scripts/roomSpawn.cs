@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using Unity.VisualScripting;
 
 public class roomSpawn : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class roomSpawn : MonoBehaviour
     int floorHeight;
     //start room
     Vector2Int startingRoom;
+    int startingRoomX;
+    int startingRoomY;
 
     public List<Vector2Int> clearedRooms = new List<Vector2Int>();
 
@@ -390,7 +393,10 @@ public class roomSpawn : MonoBehaviour
             {
                 if (roomArray[i, h] == 1)
                 {
-                     startRoom = new Vector2Int(i, h);
+                    startingRoomX = h;
+                    startingRoomY = i;
+                    startingRoom = new Vector2Int(startingRoomX,startingRoomY);
+                   
                 }
                 GameObject miniMapRoom = Instantiate(roomType(i, h));
                 miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 50 - i * 6); // Calculate position based on i and h
@@ -399,19 +405,18 @@ public class roomSpawn : MonoBehaviour
     }
     private GameObject roomType(int row, int col)
     {
-        
-        if (Player_Movement.playerScript != null)
+
+        //making current room the spawn room, when the game first loads
+        if (roomArray[row, col] == 1 && Player_Movement.playerScript.playerX == 0 && Player_Movement.playerScript.playerY == 0)
         {
-            var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
-            
-            if (roomCoordinates == new Vector2Int( , ) && roomCoordinates != new Vector2Int(0,0))
-            {
-                return pfCurrentRoom;
-            }
-
-
+            return pfCurrentRoom;
         }
-        if (roomArray[row, col] == 3)
+
+        if (new Vector2Int(Player_Movement.playerScript.playerY + 1,Player_Movement.playerScript.playerX + 1) == new Vector2Int(row,col) && roomArray[row,col] != 0) 
+        {
+            return pfCurrentRoom;
+        }
+        else if (roomArray[row, col] == 3)
         {
             return pfBossRoom;
         }
@@ -419,6 +424,7 @@ public class roomSpawn : MonoBehaviour
         {
             return pfTreasureRoom;
         }
+
         if(roomArray[row, col] == 0)
         {
             return pfBlankRoom;
