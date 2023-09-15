@@ -865,7 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296ccdf574b2296409924a23740b6cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfEnemy: {fileID: 4301168360677136072, guid: b747f995592b6074892d46b5429df7b8, type: 3}
+  pfEnemy: {fileID: 1598850145651479929, guid: b747f995592b6074892d46b5429df7b8, type: 3}
+  pfbossEnemy: {fileID: 4301168360677136072, guid: 4cae7413a5f3d0b42bc052d84b629af2, type: 3}
   enemiesSpawned: 0
   numberOfEnemies: 0
   maxNumEnemies: 10

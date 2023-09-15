@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float hp = 3;
+    public float hp;
     public float moveSpeed;
     public float attackRange;
     public GameObject target;
@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Player");
-        hp = 3;
     }
     // Update is called once per frame
     void Update()
@@ -30,10 +29,19 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             if (enemySpawn.spawnerScript != null)
             {
-                //subtract one from the number of enemies
-                enemySpawn.spawnerScript.numberOfEnemies--;
-                return;
+                if(gameObject.tag == "Enemy")
+                {
+                    //subtract one from the number of enemies
+                    enemySpawn.spawnerScript.numberOfEnemies--;
+                    return;
+                }
+                else if(gameObject.tag == "boss")
+                {
+                    enemySpawn.spawnerScript.numberOfEnemies--;
+                    GameController.gameController.bossNum--;
+                }
             }
+
         }
     }
     private void FixedUpdate()

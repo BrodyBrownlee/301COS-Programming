@@ -31,6 +31,11 @@ public class Player_HP : MonoBehaviour
             HP--;
             updateHP();
         }
+        if (collision.gameObject.tag == "boss" && hitDelay >= invincibilityTime)
+        {
+            HP--;
+            updateHP();
+        }
     }
     private void updateHP()
     {

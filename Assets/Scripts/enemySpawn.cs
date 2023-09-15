@@ -9,6 +9,7 @@ public class enemySpawn : MonoBehaviour
     public static enemySpawn spawnerScript;
 
     public GameObject pfEnemy;
+    public GameObject pfbossEnemy;
     public bool enemiesSpawned;
     public float numberOfEnemies = 0;//current enemy number
     public float maxNumEnemies = 10;//maximum number of enemies able to be spawned with right bracket
@@ -35,20 +36,38 @@ public class enemySpawn : MonoBehaviour
             }
         }
     }
+    //spawning the enemy method
     public void eSpawn()
     {
+        //getting the room coordinates
         var roomCoordinates = new Vector2Int(Player_Movement.playerScript.playerX, Player_Movement.playerScript.playerY);
+        //if the room has already been cleared then return and don't run the following code
         if (roomSpawn.roomScript.clearedRooms.Contains(roomCoordinates)) return;
         else
+        //otherwise
         {
             //finds all enemy spawn locations with the tags
             var enemies = GameObject.FindGameObjectsWithTag("enemySpawn");
             foreach (var enemySpawn in enemies)
             {
-                GameObject newEnemy = Instantiate(pfEnemy);
-                newEnemy.transform.position = enemySpawn.transform.position;
-                numberOfEnemies++;
+                //if the room is a boss room spawn the boss enemy
+                if(roomSpawn.roomScript.roomValue == 3)
+                {
+                    GameObject newEnemy = Instantiate(pfbossEnemy);
+                  
+                    newEnemy.transform.position = enemySpawn.transform.position;
+                    numberOfEnemies++;
+                }
+                else
+                {
+                    //othewise spawn normal enemies
+                    GameObject newEnemy = Instantiate(pfEnemy);
+                    newEnemy.transform.position = enemySpawn.transform.position;
+                    numberOfEnemies++;
+                }
+              
             }
+            //deactivate the spawn points so old enemies don't spawn in new rooms
             DeactivateEnemySpawnPoints();
         }
     }

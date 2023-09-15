@@ -10,6 +10,7 @@ public class room : MonoBehaviour
     {
         roomScript = this;
     }
+    //destroys the old room when the room changes
     public void roomChange()
     {
         roomChanged = true;

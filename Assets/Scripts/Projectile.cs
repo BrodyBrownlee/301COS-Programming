@@ -69,5 +69,10 @@ public class Projectile : MonoBehaviour
             Debug.Log("Door Hit");
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "boss")
+        {
+            Debug.Log("Enemy Hit");
+            Destroy(gameObject);
+        }
     }
 }

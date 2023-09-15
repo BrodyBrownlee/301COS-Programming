@@ -28,6 +28,10 @@ public class roomSpawn : MonoBehaviour
     public GameObject pfCurrentRoom;
     public GameObject pfBlankRoom;
 
+    //map layout text file
+    public TextAsset mapLayout;
+    string[] mapData;
+    int dataLine = 0;
     //array for the room coordinates which will be used to determine if a room has already been cleared.
     public int[,] roomArray;
 
@@ -54,15 +58,19 @@ public class roomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //setting up the values for the rooms 
         try
         {
-            //reading the values from the text file
-            using (StreamReader reader = new StreamReader("Assets/Text_Files/map_layout.txt"))
+            mapData = mapLayout.text.Split(Environment.NewLine);
+
+            while (dataLine < mapData.Length)
             {
+                //reading the values from the text file
+
                 //reading the height and width from the first two lines
-                floorHeight = int.Parse(reader.ReadLine());
-                floorWidth = int.Parse(reader.ReadLine());
+                floorHeight = int.Parse(mapData[dataLine++]);
+                floorWidth = int.Parse(mapData[dataLine++]);
 
                 //sets size of array from the values
                 roomArray = new int[floorHeight, floorWidth];
@@ -71,7 +79,7 @@ public class roomSpawn : MonoBehaviour
                 for (int i = 0; i < floorHeight; i++)
                 {
                     //separates the values splitting each line at a comma
-                    string[] values = reader.ReadLine().Split(',');
+                    string[] values = mapData[dataLine++].Split(',');
 
                     //loop for the floor width
                     for (int h = 0; h < floorWidth; h++)
@@ -89,6 +97,7 @@ public class roomSpawn : MonoBehaviour
         {
             Debug.Log(e);
         }
+    
         //setting player coordinates to the start room location
         for (int i = 0; i < floorHeight; i++)
         {
@@ -118,13 +127,15 @@ public class roomSpawn : MonoBehaviour
         roomScript = this;
         roomClear = true;
         doorsSpawned = false;
+
+       
     }
     void Update()
     {
         if (enemySpawn.spawnerScript != null)
         {
             //if enemies are in the room
-            if (enemySpawn.spawnerScript.numberOfEnemies > 0)
+            if (enemySpawn.spawnerScript.numberOfEnemies > 0 )
             {
                 roomClear = false;
             }
@@ -225,6 +236,7 @@ public class roomSpawn : MonoBehaviour
     //spawning triggers
     public void spawnTriggers()
     {
+        //checking if the value of the room in a certain direction exists(this is the same for all spawn methods so won't repeat comment
         if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] != 0)
         {
             leftTriggerSpawn();
@@ -242,6 +254,7 @@ public class roomSpawn : MonoBehaviour
             bottomTriggerSpawn();
         }
     }
+    //spawning doors
     public void doorSpawn()
     {
         if (roomArray[Player_Movement.playerScript.playerY, Player_Movement.playerScript.playerX - 1] != 0)
@@ -280,6 +293,7 @@ public class roomSpawn : MonoBehaviour
             bottomWallSpawn();
         }
     }
+    //spawning specific objects based on which sides need them
     public void leftDoorSpawn()
     {
         //spawning and translating the left door
@@ -379,14 +393,16 @@ public class roomSpawn : MonoBehaviour
         bottomWall.transform.localScale = new Vector3(20, 10, 10);
         bottomWall.transform.Rotate(180, 0, 0);
     }
+    //drawning the minimap method 
     public void drawMiniMap()
     {
+        //destroys the previous minimap
         var miniMapIcons = GameObject.FindGameObjectsWithTag("miniMap");
         foreach (var miniMapIcon in miniMapIcons)
         {
             Destroy(miniMapIcon);
         }
-
+        //creates the new one using for loops and the player coordinates 
         for (int i = 0; i < floorHeight; i++)
         {
             for (int h = 0; h < floorWidth; h++)
@@ -398,6 +414,7 @@ public class roomSpawn : MonoBehaviour
                     startingRoom = new Vector2Int(startingRoomX,startingRoomY);
                    
                 }
+                //instantiates object based on the room type returned from the roomtype method
                 GameObject miniMapRoom = Instantiate(roomType(i, h));
                 miniMapRoom.transform.position = new Vector3(95 + h * 6, 0, 70 - i * 6); // Calculate position based on i and h
             }
@@ -411,7 +428,7 @@ public class roomSpawn : MonoBehaviour
         {
             return pfCurrentRoom;
         }
-
+        //depending on the value of the room return a specific icon, and if the player is on the current coordinate return the current room icon 
         if (Player_Movement.playerScript.playerX == col && Player_Movement.playerScript.playerY == row && roomArray[row,col] != 0) 
         {
             return pfCurrentRoom;
@@ -428,7 +445,6 @@ public class roomSpawn : MonoBehaviour
         {
             return pfBlankRoom;
         }
-
         return pfRegularRoom; // Default return value
     }
 }
